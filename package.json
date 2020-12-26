@@ -10,6 +10,10 @@
   "browser": {
     "fs": false
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neilmillard/mmm-sdk-js.git"
+  },
   "dependencies": {
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
