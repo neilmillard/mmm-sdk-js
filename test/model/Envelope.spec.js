@@ -1,5 +1,5 @@
 /**
- * Control Your Money API
+ * Master My Money API
  * Direct access to your budgets. Or use the APP
  *
  * OpenAPI spec version: Unknown
@@ -19,15 +19,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ControlYourMoneyApi);
+    factory(root.expect, root.MasterMyMoneyApi);
   }
-}(this, function(expect, ControlYourMoneyApi) {
+}(this, function(expect, MasterMyMoneyApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ControlYourMoneyApi.Envelope();
+    instance = new MasterMyMoneyApi.Envelope();
   });
 
   var getProperty = function(object, getter, property) {
@@ -49,43 +49,43 @@
   describe('Envelope', function() {
     it('should create an instance of Envelope', function() {
       // uncomment below and update the code to test Envelope
-      //var instane = new ControlYourMoneyApi.Envelope();
-      //expect(instance).to.be.a(ControlYourMoneyApi.Envelope);
+      //var instane = new MasterMyMoneyApi.Envelope();
+      //expect(instance).to.be.a(MasterMyMoneyApi.Envelope);
     });
 
     it('should have the property url (base name: "url")', function() {
       // uncomment below and update the code to test the property url
-      //var instane = new ControlYourMoneyApi.Envelope();
+      //var instane = new MasterMyMoneyApi.Envelope();
       //expect(instance).to.be();
     });
 
     it('should have the property month (base name: "month")', function() {
       // uncomment below and update the code to test the property month
-      //var instane = new ControlYourMoneyApi.Envelope();
+      //var instane = new MasterMyMoneyApi.Envelope();
       //expect(instance).to.be();
     });
 
     it('should have the property category (base name: "category")', function() {
       // uncomment below and update the code to test the property category
-      //var instane = new ControlYourMoneyApi.Envelope();
+      //var instane = new MasterMyMoneyApi.Envelope();
       //expect(instance).to.be();
     });
 
     it('should have the property budgeted (base name: "budgeted")', function() {
       // uncomment below and update the code to test the property budgeted
-      //var instane = new ControlYourMoneyApi.Envelope();
+      //var instane = new MasterMyMoneyApi.Envelope();
       //expect(instance).to.be();
     });
 
     it('should have the property activity (base name: "activity")', function() {
       // uncomment below and update the code to test the property activity
-      //var instane = new ControlYourMoneyApi.Envelope();
+      //var instane = new MasterMyMoneyApi.Envelope();
       //expect(instance).to.be();
     });
 
     it('should have the property balance (base name: "balance")', function() {
       // uncomment below and update the code to test the property balance
-      //var instane = new ControlYourMoneyApi.Envelope();
+      //var instane = new MasterMyMoneyApi.Envelope();
       //expect(instance).to.be();
     });
 

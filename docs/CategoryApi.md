@@ -1,4 +1,4 @@
-# ControlYourMoneyApi.CategoryApi
+# MasterMyMoneyApi.CategoryApi
 
 All URIs are relative to */*
 
@@ -21,8 +21,8 @@ Concrete view for listing a queryset or creating a model instance.
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -34,8 +34,8 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.CategoryApi();
-let body = new ControlYourMoneyApi.CategoryRequest(); // CategoryRequest | 
+let apiInstance = new MasterMyMoneyApi.CategoryApi();
+let body = new MasterMyMoneyApi.CategoryRequest(); // CategoryRequest | 
 let name2 = "name_example"; // String | 
 let hidden2 = true; // Boolean | 
 let categoryGroup2 = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
@@ -89,8 +89,8 @@ Concrete view for listing a queryset or creating a model instance.
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -102,7 +102,7 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.CategoryApi();
+let apiInstance = new MasterMyMoneyApi.CategoryApi();
 let budgetId = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 
 apiInstance.categoryList(budgetId, (error, data, response) => {
@@ -141,8 +141,8 @@ Name | Type | Description  | Notes
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -154,11 +154,11 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.CategoryApi();
+let apiInstance = new MasterMyMoneyApi.CategoryApi();
 let budgetId = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 let id = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 let opts = { 
-  'body': new ControlYourMoneyApi.PatchedCategoryRequest() // PatchedCategoryRequest | 
+  'body': new MasterMyMoneyApi.PatchedCategoryRequest() // PatchedCategoryRequest | 
   'name2': "name_example" // String | 
   'hidden2': true // Boolean | 
   'categoryGroup2': "38400000-8cf0-11bd-b23e-10b96e4ef00d" // String | 
@@ -210,8 +210,8 @@ Name | Type | Description  | Notes
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -223,7 +223,7 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.CategoryApi();
+let apiInstance = new MasterMyMoneyApi.CategoryApi();
 let budgetId = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 let id = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 
@@ -264,8 +264,8 @@ Name | Type | Description  | Notes
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -277,7 +277,7 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.CategoryApi();
+let apiInstance = new MasterMyMoneyApi.CategoryApi();
 let budgetId = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 let categoryId = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 
@@ -318,8 +318,8 @@ Name | Type | Description  | Notes
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -331,8 +331,8 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.CategoryApi();
-let body = new ControlYourMoneyApi.CategoryRequest(); // CategoryRequest | 
+let apiInstance = new MasterMyMoneyApi.CategoryApi();
+let body = new MasterMyMoneyApi.CategoryRequest(); // CategoryRequest | 
 let name2 = "name_example"; // String | 
 let hidden2 = true; // Boolean | 
 let categoryGroup2 = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 

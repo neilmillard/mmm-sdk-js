@@ -1,4 +1,4 @@
-# ControlYourMoneyApi.PayeeApi
+# MasterMyMoneyApi.PayeeApi
 
 All URIs are relative to */*
 
@@ -20,8 +20,8 @@ Concrete view for listing a queryset or creating a model instance.
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -33,8 +33,8 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.PayeeApi();
-let body = new ControlYourMoneyApi.PayeeRequest(); // PayeeRequest | 
+let apiInstance = new MasterMyMoneyApi.PayeeApi();
+let body = new MasterMyMoneyApi.PayeeRequest(); // PayeeRequest | 
 let name2 = "name_example"; // String | 
 let transferAccountId2 = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 let deleted2 = true; // Boolean | 
@@ -88,8 +88,8 @@ Concrete view for listing a queryset or creating a model instance.
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -101,7 +101,7 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.PayeeApi();
+let apiInstance = new MasterMyMoneyApi.PayeeApi();
 let budgetId = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 
 apiInstance.payeeList(budgetId, (error, data, response) => {
@@ -140,8 +140,8 @@ Name | Type | Description  | Notes
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -153,11 +153,11 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.PayeeApi();
+let apiInstance = new MasterMyMoneyApi.PayeeApi();
 let budgetId = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 let id = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 let opts = { 
-  'body': new ControlYourMoneyApi.PatchedPayeeRequest() // PatchedPayeeRequest | 
+  'body': new MasterMyMoneyApi.PatchedPayeeRequest() // PatchedPayeeRequest | 
   'name2': "name_example" // String | 
   'transferAccountId2': "38400000-8cf0-11bd-b23e-10b96e4ef00d" // String | 
   'deleted2': true // Boolean | 
@@ -209,8 +209,8 @@ Name | Type | Description  | Notes
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -222,7 +222,7 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.PayeeApi();
+let apiInstance = new MasterMyMoneyApi.PayeeApi();
 let budgetId = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 let id = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 
@@ -263,8 +263,8 @@ Name | Type | Description  | Notes
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -276,8 +276,8 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.PayeeApi();
-let body = new ControlYourMoneyApi.PayeeRequest(); // PayeeRequest | 
+let apiInstance = new MasterMyMoneyApi.PayeeApi();
+let body = new MasterMyMoneyApi.PayeeRequest(); // PayeeRequest | 
 let name2 = "name_example"; // String | 
 let transferAccountId2 = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 let deleted2 = true; // Boolean | 

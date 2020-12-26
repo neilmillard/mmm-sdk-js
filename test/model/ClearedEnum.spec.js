@@ -1,5 +1,5 @@
 /**
- * Control Your Money API
+ * Master My Money API
  * Direct access to your budgets. Or use the APP
  *
  * OpenAPI spec version: Unknown
@@ -19,9 +19,9 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ControlYourMoneyApi);
+    factory(root.expect, root.MasterMyMoneyApi);
   }
-}(this, function(expect, ControlYourMoneyApi) {
+}(this, function(expect, MasterMyMoneyApi) {
   'use strict';
 
   var instance;
@@ -48,8 +48,8 @@
   describe('ClearedEnum', function() {
     it('should create an instance of ClearedEnum', function() {
       // uncomment below and update the code to test ClearedEnum
-      //var instane = new ControlYourMoneyApi.ClearedEnum();
-      //expect(instance).to.be.a(ControlYourMoneyApi.ClearedEnum);
+      //var instane = new MasterMyMoneyApi.ClearedEnum();
+      //expect(instance).to.be.a(MasterMyMoneyApi.ClearedEnum);
     });
 
   });

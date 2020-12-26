@@ -1,5 +1,5 @@
 /**
- * Control Your Money API
+ * Master My Money API
  * Direct access to your budgets. Or use the APP
  *
  * OpenAPI spec version: Unknown
@@ -19,15 +19,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ControlYourMoneyApi);
+    factory(root.expect, root.MasterMyMoneyApi);
   }
-}(this, function(expect, ControlYourMoneyApi) {
+}(this, function(expect, MasterMyMoneyApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ControlYourMoneyApi.PatchedPayeeRequest();
+    instance = new MasterMyMoneyApi.PatchedPayeeRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -49,25 +49,25 @@
   describe('PatchedPayeeRequest', function() {
     it('should create an instance of PatchedPayeeRequest', function() {
       // uncomment below and update the code to test PatchedPayeeRequest
-      //var instane = new ControlYourMoneyApi.PatchedPayeeRequest();
-      //expect(instance).to.be.a(ControlYourMoneyApi.PatchedPayeeRequest);
+      //var instane = new MasterMyMoneyApi.PatchedPayeeRequest();
+      //expect(instance).to.be.a(MasterMyMoneyApi.PatchedPayeeRequest);
     });
 
     it('should have the property name (base name: "name")', function() {
       // uncomment below and update the code to test the property name
-      //var instane = new ControlYourMoneyApi.PatchedPayeeRequest();
+      //var instane = new MasterMyMoneyApi.PatchedPayeeRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property transferAccountId (base name: "transfer_account_id")', function() {
       // uncomment below and update the code to test the property transferAccountId
-      //var instane = new ControlYourMoneyApi.PatchedPayeeRequest();
+      //var instane = new MasterMyMoneyApi.PatchedPayeeRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property deleted (base name: "deleted")', function() {
       // uncomment below and update the code to test the property deleted
-      //var instane = new ControlYourMoneyApi.PatchedPayeeRequest();
+      //var instane = new MasterMyMoneyApi.PatchedPayeeRequest();
       //expect(instance).to.be();
     });
 

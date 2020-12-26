@@ -1,4 +1,4 @@
-# ControlYourMoneyApi.PatchedCategoryRequest
+# MasterMyMoneyApi.PatchedCategoryRequest
 
 ## Properties
 Name | Type | Description | Notes

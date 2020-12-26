@@ -1,4 +1,4 @@
-# ControlYourMoneyApi.TransactionApi
+# MasterMyMoneyApi.TransactionApi
 
 All URIs are relative to */*
 
@@ -20,8 +20,8 @@ Concrete view for listing a queryset or creating a model instance.
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -33,12 +33,12 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.TransactionApi();
-let body = new ControlYourMoneyApi.TransactionRequest(); // TransactionRequest | 
+let apiInstance = new MasterMyMoneyApi.TransactionApi();
+let body = new MasterMyMoneyApi.TransactionRequest(); // TransactionRequest | 
 let _date2 = new Date("2013-10-20"); // Date | 
 let amount2 = 56; // Number | 
 let memo2 = "memo_example"; // String | 
-let cleared2 = new ControlYourMoneyApi.ClearedEnum(); // ClearedEnum | 
+let cleared2 = new MasterMyMoneyApi.ClearedEnum(); // ClearedEnum | 
 let approved2 = true; // Boolean | 
 let account2 = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 let payee2 = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
@@ -47,7 +47,7 @@ let payeeName2 = "payeeName_example"; // String |
 let _date = new Date("2013-10-20"); // Date | 
 let amount = 56; // Number | 
 let memo = "memo_example"; // String | 
-let cleared = new ControlYourMoneyApi.ClearedEnum(); // ClearedEnum | 
+let cleared = new MasterMyMoneyApi.ClearedEnum(); // ClearedEnum | 
 let approved = true; // Boolean | 
 let account = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 let payee = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
@@ -112,8 +112,8 @@ Concrete view for listing a queryset or creating a model instance.
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -125,7 +125,7 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.TransactionApi();
+let apiInstance = new MasterMyMoneyApi.TransactionApi();
 let budgetId = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 
 apiInstance.transactionList(budgetId, (error, data, response) => {
@@ -164,8 +164,8 @@ Name | Type | Description  | Notes
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -177,15 +177,15 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.TransactionApi();
+let apiInstance = new MasterMyMoneyApi.TransactionApi();
 let budgetId = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 let id = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 let opts = { 
-  'body': new ControlYourMoneyApi.PatchedTransactionRequest() // PatchedTransactionRequest | 
+  'body': new MasterMyMoneyApi.PatchedTransactionRequest() // PatchedTransactionRequest | 
   '_date2': new Date("2013-10-20") // Date | 
   'amount2': 56 // Number | 
   'memo2': "memo_example" // String | 
-  'cleared2': new ControlYourMoneyApi.ClearedEnum() // ClearedEnum | 
+  'cleared2': new MasterMyMoneyApi.ClearedEnum() // ClearedEnum | 
   'approved2': true // Boolean | 
   'account2': "38400000-8cf0-11bd-b23e-10b96e4ef00d" // String | 
   'payee2': "38400000-8cf0-11bd-b23e-10b96e4ef00d" // String | 
@@ -194,7 +194,7 @@ let opts = {
   '_date': new Date("2013-10-20") // Date | 
   'amount': 56 // Number | 
   'memo': "memo_example" // String | 
-  'cleared': new ControlYourMoneyApi.ClearedEnum() // ClearedEnum | 
+  'cleared': new MasterMyMoneyApi.ClearedEnum() // ClearedEnum | 
   'approved': true // Boolean | 
   'account': "38400000-8cf0-11bd-b23e-10b96e4ef00d" // String | 
   'payee': "38400000-8cf0-11bd-b23e-10b96e4ef00d" // String | 
@@ -257,8 +257,8 @@ Name | Type | Description  | Notes
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -270,7 +270,7 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.TransactionApi();
+let apiInstance = new MasterMyMoneyApi.TransactionApi();
 let budgetId = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 let id = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 
@@ -311,8 +311,8 @@ Name | Type | Description  | Notes
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -324,12 +324,12 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.TransactionApi();
-let body = new ControlYourMoneyApi.TransactionRequest(); // TransactionRequest | 
+let apiInstance = new MasterMyMoneyApi.TransactionApi();
+let body = new MasterMyMoneyApi.TransactionRequest(); // TransactionRequest | 
 let _date2 = new Date("2013-10-20"); // Date | 
 let amount2 = 56; // Number | 
 let memo2 = "memo_example"; // String | 
-let cleared2 = new ControlYourMoneyApi.ClearedEnum(); // ClearedEnum | 
+let cleared2 = new MasterMyMoneyApi.ClearedEnum(); // ClearedEnum | 
 let approved2 = true; // Boolean | 
 let account2 = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 let payee2 = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
@@ -338,7 +338,7 @@ let payeeName2 = "payeeName_example"; // String |
 let _date = new Date("2013-10-20"); // Date | 
 let amount = 56; // Number | 
 let memo = "memo_example"; // String | 
-let cleared = new ControlYourMoneyApi.ClearedEnum(); // ClearedEnum | 
+let cleared = new MasterMyMoneyApi.ClearedEnum(); // ClearedEnum | 
 let approved = true; // Boolean | 
 let account = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 let payee = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 

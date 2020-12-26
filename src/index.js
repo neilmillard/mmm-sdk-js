@@ -1,5 +1,5 @@
 /**
- * Control Your Money API
+ * Master My Money API
  * Direct access to your budgets. Or use the APP
  *
  * OpenAPI spec version: Unknown
@@ -50,9 +50,9 @@ import TransactionApi from './api/TransactionApi';
 * <p>
 * An AMD (recommended!) or CommonJS application will generally do something equivalent to the following:
 * <pre>
-* var ControlYourMoneyApi = require('index'); // See note below*.
-* var xxxSvc = new ControlYourMoneyApi.XxxApi(); // Allocate the API class we're going to use.
-* var yyyModel = new ControlYourMoneyApi.Yyy(); // Construct a model instance.
+* var MasterMyMoneyApi = require('index'); // See note below*.
+* var xxxSvc = new MasterMyMoneyApi.XxxApi(); // Allocate the API class we're going to use.
+* var yyyModel = new MasterMyMoneyApi.Yyy(); // Construct a model instance.
 * yyyModel.someProperty = 'someValue';
 * ...
 * var zzz = xxxSvc.doSomething(yyyModel); // Invoke the service.
@@ -64,8 +64,8 @@ import TransactionApi from './api/TransactionApi';
 * <p>
 * A non-AMD browser application (discouraged) might do something like this:
 * <pre>
-* var xxxSvc = new ControlYourMoneyApi.XxxApi(); // Allocate the API class we're going to use.
-* var yyy = new ControlYourMoneyApi.Yyy(); // Construct a model instance.
+* var xxxSvc = new MasterMyMoneyApi.XxxApi(); // Allocate the API class we're going to use.
+* var yyy = new MasterMyMoneyApi.Yyy(); // Construct a model instance.
 * yyyModel.someProperty = 'someValue';
 * ...
 * var zzz = xxxSvc.doSomething(yyyModel); // Invoke the service.

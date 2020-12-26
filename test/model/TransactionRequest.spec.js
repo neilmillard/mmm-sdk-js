@@ -1,5 +1,5 @@
 /**
- * Control Your Money API
+ * Master My Money API
  * Direct access to your budgets. Or use the APP
  *
  * OpenAPI spec version: Unknown
@@ -19,15 +19,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ControlYourMoneyApi);
+    factory(root.expect, root.MasterMyMoneyApi);
   }
-}(this, function(expect, ControlYourMoneyApi) {
+}(this, function(expect, MasterMyMoneyApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ControlYourMoneyApi.TransactionRequest();
+    instance = new MasterMyMoneyApi.TransactionRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -49,61 +49,61 @@
   describe('TransactionRequest', function() {
     it('should create an instance of TransactionRequest', function() {
       // uncomment below and update the code to test TransactionRequest
-      //var instane = new ControlYourMoneyApi.TransactionRequest();
-      //expect(instance).to.be.a(ControlYourMoneyApi.TransactionRequest);
+      //var instane = new MasterMyMoneyApi.TransactionRequest();
+      //expect(instance).to.be.a(MasterMyMoneyApi.TransactionRequest);
     });
 
     it('should have the property _date (base name: "date")', function() {
       // uncomment below and update the code to test the property _date
-      //var instane = new ControlYourMoneyApi.TransactionRequest();
+      //var instane = new MasterMyMoneyApi.TransactionRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property amount (base name: "amount")', function() {
       // uncomment below and update the code to test the property amount
-      //var instane = new ControlYourMoneyApi.TransactionRequest();
+      //var instane = new MasterMyMoneyApi.TransactionRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property memo (base name: "memo")', function() {
       // uncomment below and update the code to test the property memo
-      //var instane = new ControlYourMoneyApi.TransactionRequest();
+      //var instane = new MasterMyMoneyApi.TransactionRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property cleared (base name: "cleared")', function() {
       // uncomment below and update the code to test the property cleared
-      //var instane = new ControlYourMoneyApi.TransactionRequest();
+      //var instane = new MasterMyMoneyApi.TransactionRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property approved (base name: "approved")', function() {
       // uncomment below and update the code to test the property approved
-      //var instane = new ControlYourMoneyApi.TransactionRequest();
+      //var instane = new MasterMyMoneyApi.TransactionRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property account (base name: "account")', function() {
       // uncomment below and update the code to test the property account
-      //var instane = new ControlYourMoneyApi.TransactionRequest();
+      //var instane = new MasterMyMoneyApi.TransactionRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property payee (base name: "payee")', function() {
       // uncomment below and update the code to test the property payee
-      //var instane = new ControlYourMoneyApi.TransactionRequest();
+      //var instane = new MasterMyMoneyApi.TransactionRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property category (base name: "category")', function() {
       // uncomment below and update the code to test the property category
-      //var instane = new ControlYourMoneyApi.TransactionRequest();
+      //var instane = new MasterMyMoneyApi.TransactionRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property payeeName (base name: "payee_name")', function() {
       // uncomment below and update the code to test the property payeeName
-      //var instane = new ControlYourMoneyApi.TransactionRequest();
+      //var instane = new MasterMyMoneyApi.TransactionRequest();
       //expect(instance).to.be();
     });
 

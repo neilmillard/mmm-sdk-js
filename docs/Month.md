@@ -1,4 +1,4 @@
-# ControlYourMoneyApi.Month
+# MasterMyMoneyApi.Month
 
 ## Properties
 Name | Type | Description | Notes

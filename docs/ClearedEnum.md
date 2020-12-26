@@ -1,4 +1,4 @@
-# ControlYourMoneyApi.ClearedEnum
+# MasterMyMoneyApi.ClearedEnum
 
 ## Enum
 

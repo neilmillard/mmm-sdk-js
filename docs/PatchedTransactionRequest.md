@@ -1,4 +1,4 @@
-# ControlYourMoneyApi.PatchedTransactionRequest
+# MasterMyMoneyApi.PatchedTransactionRequest
 
 ## Properties
 Name | Type | Description | Notes

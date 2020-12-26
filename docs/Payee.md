@@ -1,4 +1,4 @@
-# ControlYourMoneyApi.Payee
+# MasterMyMoneyApi.Payee
 
 ## Properties
 Name | Type | Description | Notes

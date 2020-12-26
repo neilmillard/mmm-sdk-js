@@ -1,5 +1,5 @@
 /**
- * Control Your Money API
+ * Master My Money API
  * Direct access to your budgets. Or use the APP
  *
  * OpenAPI spec version: Unknown
@@ -19,15 +19,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ControlYourMoneyApi);
+    factory(root.expect, root.MasterMyMoneyApi);
   }
-}(this, function(expect, ControlYourMoneyApi) {
+}(this, function(expect, MasterMyMoneyApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ControlYourMoneyApi.CategoryRequest();
+    instance = new MasterMyMoneyApi.CategoryRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -49,25 +49,25 @@
   describe('CategoryRequest', function() {
     it('should create an instance of CategoryRequest', function() {
       // uncomment below and update the code to test CategoryRequest
-      //var instane = new ControlYourMoneyApi.CategoryRequest();
-      //expect(instance).to.be.a(ControlYourMoneyApi.CategoryRequest);
+      //var instane = new MasterMyMoneyApi.CategoryRequest();
+      //expect(instance).to.be.a(MasterMyMoneyApi.CategoryRequest);
     });
 
     it('should have the property name (base name: "name")', function() {
       // uncomment below and update the code to test the property name
-      //var instane = new ControlYourMoneyApi.CategoryRequest();
+      //var instane = new MasterMyMoneyApi.CategoryRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property hidden (base name: "hidden")', function() {
       // uncomment below and update the code to test the property hidden
-      //var instane = new ControlYourMoneyApi.CategoryRequest();
+      //var instane = new MasterMyMoneyApi.CategoryRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property categoryGroup (base name: "category_group")', function() {
       // uncomment below and update the code to test the property categoryGroup
-      //var instane = new ControlYourMoneyApi.CategoryRequest();
+      //var instane = new MasterMyMoneyApi.CategoryRequest();
       //expect(instance).to.be();
     });
 

@@ -1,5 +1,5 @@
 /**
- * Control Your Money API
+ * Master My Money API
  * Direct access to your budgets. Or use the APP
  *
  * OpenAPI spec version: Unknown
@@ -19,15 +19,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ControlYourMoneyApi);
+    factory(root.expect, root.MasterMyMoneyApi);
   }
-}(this, function(expect, ControlYourMoneyApi) {
+}(this, function(expect, MasterMyMoneyApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ControlYourMoneyApi.MonthRequest();
+    instance = new MasterMyMoneyApi.MonthRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -49,49 +49,49 @@
   describe('MonthRequest', function() {
     it('should create an instance of MonthRequest', function() {
       // uncomment below and update the code to test MonthRequest
-      //var instane = new ControlYourMoneyApi.MonthRequest();
-      //expect(instance).to.be.a(ControlYourMoneyApi.MonthRequest);
+      //var instane = new MasterMyMoneyApi.MonthRequest();
+      //expect(instance).to.be.a(MasterMyMoneyApi.MonthRequest);
     });
 
     it('should have the property month (base name: "month")', function() {
       // uncomment below and update the code to test the property month
-      //var instane = new ControlYourMoneyApi.MonthRequest();
+      //var instane = new MasterMyMoneyApi.MonthRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property note (base name: "note")', function() {
       // uncomment below and update the code to test the property note
-      //var instane = new ControlYourMoneyApi.MonthRequest();
+      //var instane = new MasterMyMoneyApi.MonthRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property income (base name: "income")', function() {
       // uncomment below and update the code to test the property income
-      //var instane = new ControlYourMoneyApi.MonthRequest();
+      //var instane = new MasterMyMoneyApi.MonthRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property budgeted (base name: "budgeted")', function() {
       // uncomment below and update the code to test the property budgeted
-      //var instane = new ControlYourMoneyApi.MonthRequest();
+      //var instane = new MasterMyMoneyApi.MonthRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property activity (base name: "activity")', function() {
       // uncomment below and update the code to test the property activity
-      //var instane = new ControlYourMoneyApi.MonthRequest();
+      //var instane = new MasterMyMoneyApi.MonthRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property toBeBudgeted (base name: "to_be_budgeted")', function() {
       // uncomment below and update the code to test the property toBeBudgeted
-      //var instane = new ControlYourMoneyApi.MonthRequest();
+      //var instane = new MasterMyMoneyApi.MonthRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property ageOfMoney (base name: "age_of_money")', function() {
       // uncomment below and update the code to test the property ageOfMoney
-      //var instane = new ControlYourMoneyApi.MonthRequest();
+      //var instane = new MasterMyMoneyApi.MonthRequest();
       //expect(instance).to.be();
     });
 

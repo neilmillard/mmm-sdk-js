@@ -1,4 +1,4 @@
-# ControlYourMoneyApi.Envelope
+# MasterMyMoneyApi.Envelope
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# ControlYourMoneyApi.DefaultApi
+# MasterMyMoneyApi.DefaultApi
 
 All URIs are relative to */*
 
@@ -19,8 +19,8 @@ Method | HTTP request | Description
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -32,8 +32,8 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.DefaultApi();
-let body = new ControlYourMoneyApi.BudgetRequest(); // BudgetRequest | 
+let apiInstance = new MasterMyMoneyApi.DefaultApi();
+let body = new MasterMyMoneyApi.BudgetRequest(); // BudgetRequest | 
 let name2 = "name_example"; // String | 
 let name = "name_example"; // String | 
 
@@ -75,8 +75,8 @@ Name | Type | Description  | Notes
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -88,7 +88,7 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.DefaultApi();
+let apiInstance = new MasterMyMoneyApi.DefaultApi();
 let id = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 
 apiInstance.rootDestroy(id, (error, data, response) => {
@@ -127,8 +127,8 @@ null (empty response body)
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -140,7 +140,7 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.DefaultApi();
+let apiInstance = new MasterMyMoneyApi.DefaultApi();
 apiInstance.rootList((error, data, response) => {
   if (error) {
     console.error(error);
@@ -174,8 +174,8 @@ This endpoint does not need any parameter.
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -187,10 +187,10 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.DefaultApi();
+let apiInstance = new MasterMyMoneyApi.DefaultApi();
 let id = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 let opts = { 
-  'body': new ControlYourMoneyApi.PatchedBudgetRequest() // PatchedBudgetRequest | 
+  'body': new MasterMyMoneyApi.PatchedBudgetRequest() // PatchedBudgetRequest | 
   'name2': "name_example" // String | 
   'name': "name_example" // String | 
 };
@@ -233,8 +233,8 @@ Name | Type | Description  | Notes
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -246,7 +246,7 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.DefaultApi();
+let apiInstance = new MasterMyMoneyApi.DefaultApi();
 let id = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 
 
 apiInstance.rootRetrieve(id, (error, data, response) => {
@@ -285,8 +285,8 @@ Name | Type | Description  | Notes
 
 ### Example
 ```javascript
-import ControlYourMoneyApi from 'control_your_money_api';
-let defaultClient = ControlYourMoneyApi.ApiClient.instance;
+import MasterMyMoneyApi from 'master_my_money_api';
+let defaultClient = MasterMyMoneyApi.ApiClient.instance;
 // Configure HTTP basic authorization: basicAuth
 let basicAuth = defaultClient.authentications['basicAuth'];
 basicAuth.username = 'YOUR USERNAME';
@@ -298,8 +298,8 @@ cookieAuth.apiKey = 'YOUR API KEY';
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
 //cookieAuth.apiKeyPrefix = 'Token';
 
-let apiInstance = new ControlYourMoneyApi.DefaultApi();
-let body = new ControlYourMoneyApi.BudgetRequest(); // BudgetRequest | 
+let apiInstance = new MasterMyMoneyApi.DefaultApi();
+let body = new MasterMyMoneyApi.BudgetRequest(); // BudgetRequest | 
 let name2 = "name_example"; // String | 
 let name = "name_example"; // String | 
 let id = "38400000-8cf0-11bd-b23e-10b96e4ef00d"; // String | 

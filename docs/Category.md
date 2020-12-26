@@ -1,4 +1,4 @@
-# ControlYourMoneyApi.Category
+# MasterMyMoneyApi.Category
 
 ## Properties
 Name | Type | Description | Notes

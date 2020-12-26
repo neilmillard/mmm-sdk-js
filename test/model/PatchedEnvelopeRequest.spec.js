@@ -1,5 +1,5 @@
 /**
- * Control Your Money API
+ * Master My Money API
  * Direct access to your budgets. Or use the APP
  *
  * OpenAPI spec version: Unknown
@@ -19,15 +19,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ControlYourMoneyApi);
+    factory(root.expect, root.MasterMyMoneyApi);
   }
-}(this, function(expect, ControlYourMoneyApi) {
+}(this, function(expect, MasterMyMoneyApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ControlYourMoneyApi.PatchedEnvelopeRequest();
+    instance = new MasterMyMoneyApi.PatchedEnvelopeRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -49,25 +49,25 @@
   describe('PatchedEnvelopeRequest', function() {
     it('should create an instance of PatchedEnvelopeRequest', function() {
       // uncomment below and update the code to test PatchedEnvelopeRequest
-      //var instane = new ControlYourMoneyApi.PatchedEnvelopeRequest();
-      //expect(instance).to.be.a(ControlYourMoneyApi.PatchedEnvelopeRequest);
+      //var instane = new MasterMyMoneyApi.PatchedEnvelopeRequest();
+      //expect(instance).to.be.a(MasterMyMoneyApi.PatchedEnvelopeRequest);
     });
 
     it('should have the property budgeted (base name: "budgeted")', function() {
       // uncomment below and update the code to test the property budgeted
-      //var instane = new ControlYourMoneyApi.PatchedEnvelopeRequest();
+      //var instane = new MasterMyMoneyApi.PatchedEnvelopeRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property activity (base name: "activity")', function() {
       // uncomment below and update the code to test the property activity
-      //var instane = new ControlYourMoneyApi.PatchedEnvelopeRequest();
+      //var instane = new MasterMyMoneyApi.PatchedEnvelopeRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property balance (base name: "balance")', function() {
       // uncomment below and update the code to test the property balance
-      //var instane = new ControlYourMoneyApi.PatchedEnvelopeRequest();
+      //var instane = new MasterMyMoneyApi.PatchedEnvelopeRequest();
       //expect(instance).to.be();
     });
 

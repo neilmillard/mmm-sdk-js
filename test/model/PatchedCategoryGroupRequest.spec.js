@@ -1,5 +1,5 @@
 /**
- * Control Your Money API
+ * Master My Money API
  * Direct access to your budgets. Or use the APP
  *
  * OpenAPI spec version: Unknown
@@ -19,15 +19,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ControlYourMoneyApi);
+    factory(root.expect, root.MasterMyMoneyApi);
   }
-}(this, function(expect, ControlYourMoneyApi) {
+}(this, function(expect, MasterMyMoneyApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ControlYourMoneyApi.PatchedCategoryGroupRequest();
+    instance = new MasterMyMoneyApi.PatchedCategoryGroupRequest();
   });
 
   var getProperty = function(object, getter, property) {
@@ -49,25 +49,25 @@
   describe('PatchedCategoryGroupRequest', function() {
     it('should create an instance of PatchedCategoryGroupRequest', function() {
       // uncomment below and update the code to test PatchedCategoryGroupRequest
-      //var instane = new ControlYourMoneyApi.PatchedCategoryGroupRequest();
-      //expect(instance).to.be.a(ControlYourMoneyApi.PatchedCategoryGroupRequest);
+      //var instane = new MasterMyMoneyApi.PatchedCategoryGroupRequest();
+      //expect(instance).to.be.a(MasterMyMoneyApi.PatchedCategoryGroupRequest);
     });
 
     it('should have the property name (base name: "name")', function() {
       // uncomment below and update the code to test the property name
-      //var instane = new ControlYourMoneyApi.PatchedCategoryGroupRequest();
+      //var instane = new MasterMyMoneyApi.PatchedCategoryGroupRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property hidden (base name: "hidden")', function() {
       // uncomment below and update the code to test the property hidden
-      //var instane = new ControlYourMoneyApi.PatchedCategoryGroupRequest();
+      //var instane = new MasterMyMoneyApi.PatchedCategoryGroupRequest();
       //expect(instance).to.be();
     });
 
     it('should have the property deleted (base name: "deleted")', function() {
       // uncomment below and update the code to test the property deleted
-      //var instane = new ControlYourMoneyApi.PatchedCategoryGroupRequest();
+      //var instane = new MasterMyMoneyApi.PatchedCategoryGroupRequest();
       //expect(instance).to.be();
     });
 

@@ -1,4 +1,4 @@
-# ControlYourMoneyApi.BudgetRequest
+# MasterMyMoneyApi.BudgetRequest
 
 ## Properties
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# ControlYourMoneyApi.PatchedPayeeRequest
+# MasterMyMoneyApi.PatchedPayeeRequest
 
 ## Properties
 Name | Type | Description | Notes

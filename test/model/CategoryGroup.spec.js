@@ -1,5 +1,5 @@
 /**
- * Control Your Money API
+ * Master My Money API
  * Direct access to your budgets. Or use the APP
  *
  * OpenAPI spec version: Unknown
@@ -19,15 +19,15 @@
     factory(require('expect.js'), require('../../src/index'));
   } else {
     // Browser globals (root is window)
-    factory(root.expect, root.ControlYourMoneyApi);
+    factory(root.expect, root.MasterMyMoneyApi);
   }
-}(this, function(expect, ControlYourMoneyApi) {
+}(this, function(expect, MasterMyMoneyApi) {
   'use strict';
 
   var instance;
 
   beforeEach(function() {
-    instance = new ControlYourMoneyApi.CategoryGroup();
+    instance = new MasterMyMoneyApi.CategoryGroup();
   });
 
   var getProperty = function(object, getter, property) {
@@ -49,43 +49,43 @@
   describe('CategoryGroup', function() {
     it('should create an instance of CategoryGroup', function() {
       // uncomment below and update the code to test CategoryGroup
-      //var instane = new ControlYourMoneyApi.CategoryGroup();
-      //expect(instance).to.be.a(ControlYourMoneyApi.CategoryGroup);
+      //var instane = new MasterMyMoneyApi.CategoryGroup();
+      //expect(instance).to.be.a(MasterMyMoneyApi.CategoryGroup);
     });
 
     it('should have the property url (base name: "url")', function() {
       // uncomment below and update the code to test the property url
-      //var instane = new ControlYourMoneyApi.CategoryGroup();
+      //var instane = new MasterMyMoneyApi.CategoryGroup();
       //expect(instance).to.be();
     });
 
     it('should have the property id (base name: "id")', function() {
       // uncomment below and update the code to test the property id
-      //var instane = new ControlYourMoneyApi.CategoryGroup();
+      //var instane = new MasterMyMoneyApi.CategoryGroup();
       //expect(instance).to.be();
     });
 
     it('should have the property name (base name: "name")', function() {
       // uncomment below and update the code to test the property name
-      //var instane = new ControlYourMoneyApi.CategoryGroup();
+      //var instane = new MasterMyMoneyApi.CategoryGroup();
       //expect(instance).to.be();
     });
 
     it('should have the property hidden (base name: "hidden")', function() {
       // uncomment below and update the code to test the property hidden
-      //var instane = new ControlYourMoneyApi.CategoryGroup();
+      //var instane = new MasterMyMoneyApi.CategoryGroup();
       //expect(instance).to.be();
     });
 
     it('should have the property deleted (base name: "deleted")', function() {
       // uncomment below and update the code to test the property deleted
-      //var instane = new ControlYourMoneyApi.CategoryGroup();
+      //var instane = new MasterMyMoneyApi.CategoryGroup();
       //expect(instance).to.be();
     });
 
     it('should have the property categories (base name: "categories")', function() {
       // uncomment below and update the code to test the property categories
-      //var instane = new ControlYourMoneyApi.CategoryGroup();
+      //var instane = new MasterMyMoneyApi.CategoryGroup();
       //expect(instance).to.be();
     });
 
