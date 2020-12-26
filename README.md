@@ -26,11 +26,11 @@ npm install control_your_money_api --save
 #### git
 #
 If the library is hosted at a git repository, e.g.
-https://github.com/GIT_USER_ID/GIT_REPO_ID
+https://github.com/neilmillard/mmm-sdk-js
 then install it via:
 
 ```shell
-    npm install GIT_USER_ID/GIT_REPO_ID --save
+    npm install neilmillard/mmm-sdk-js --save
 ```
 
 ### For browser
