@@ -1,20 +1,57 @@
 {
-  "name": "mmm-sdk-js",
   "version": "0.1.0",
-  "description": "JavaScript client for Manage my Money API",
-  "main": "index.js",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
   "scripts": {
     "generate": "npx jbash ./.swagger-codegen/generate.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -b src/ && webpack --mode production",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
   },
+  "peerDependencies": {},
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "mmm-sdk-js",
+  "author": "Neil Millard",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/neilmillard/mmm-sdk-js.git"
   },
-  "keywords": [],
-  "author": "Neil Millard",
-  "license": "ISC",
+  "module": "dist/mmm-sdk-js.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/mmm-sdk-js.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/mmm-sdk-js.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "dependencies": {
+    "portable-fetch": "^3.0.0"
+  },
   "devDependencies": {
-    "typescript": "^4.1.3"
+    "@size-limit/preset-small-lib": "^4.9.1",
+    "@types/node": "^14.0.27",
+    "@types/eslint": "7.2.0",
+    "size-limit": "^4.9.1",
+    "tslib": "^2.0.3",
+    "typescript": "^4.1.3",
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.0",
+    "ts-loader": "^8.0.12"
   }
 }

@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "target": "es6",
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "outDir": "../dist",
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "noEmitOnError": true,
+    "composite": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./tsconfig.tsbuildinfo",
+    "rootDir": "."
+  },
+  "include": ["./**/*.ts"]
+}
