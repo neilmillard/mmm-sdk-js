@@ -1,31 +1,20 @@
 {
-  "name": "master_my_money_api",
-  "version": "Unknown",
-  "description": "Direct_access_to_your_budgets__Or_use_the_APP",
-  "license": "Unlicense",
-  "main": "src/index.js",
+  "name": "mmm-sdk-js",
+  "version": "0.1.0",
+  "description": "JavaScript client for Manage my Money API",
+  "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --recursive"
-  },
-  "browser": {
-    "fs": false
+    "generate": "npx jbash ./.swagger-codegen/generate.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/neilmillard/mmm-sdk-js.git"
   },
-  "dependencies": {
-    "babel": "^6.23.0",
-    "babel-cli": "^6.26.0",
-    "superagent": "3.7.0"
-  },
+  "keywords": [],
+  "author": "Neil Millard",
+  "license": "ISC",
   "devDependencies": {
-    "babel-core": "6.26.0",
-    "babel-plugin-transform-builtin-extend": "^1.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "expect.js": "~0.3.1",
-    "mocha": "~2.3.4",
-    "sinon": "1.17.3"
+    "typescript": "^4.1.3"
   }
 }
