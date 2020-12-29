@@ -462,248 +462,221 @@ export declare namespace Transaction {
     }
 }
 /**
- * Schemav3Api - fetch parameter creator
+ * AccountsApi - fetch parameter creator
  * @export
  */
-export declare const Schemav3ApiFetchParamCreator: (configuration?: Configuration | undefined) => {
+export declare const AccountsApiFetchParamCreator: (configuration?: Configuration | undefined) => {
     /**
      *
+     * @param {string} budgetId
+     * @param {Account} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    schemav3List(options?: any): FetchArgs;
-};
-/**
- * Schemav3Api - functional programming interface
- * @export
- */
-export declare const Schemav3ApiFp: (configuration?: Configuration | undefined) => {
+    budgetsAccountCreate(budgetId: string, data: Account, options?: any): FetchArgs;
     /**
      *
+     * @param {string} budgetId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    schemav3List(options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Response>;
-};
-/**
- * Schemav3Api - factory interface
- * @export
- */
-export declare const Schemav3ApiFactory: (configuration?: Configuration | undefined, fetch?: FetchAPI | undefined, basePath?: string | undefined) => {
+    budgetsAccountList(budgetId: string, options?: any): FetchArgs;
     /**
      *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Account} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    schemav3List(options?: any): Promise<Response>;
+    budgetsAccountPartialUpdate(budgetId: string, id: string, data: Account, options?: any): FetchArgs;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsAccountRead(budgetId: string, id: string, options?: any): FetchArgs;
+    /**
+     *
+     * @param {string} accountId
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsAccountTransactionList(accountId: string, budgetId: string, options?: any): FetchArgs;
 };
 /**
- * Schemav3Api - object-oriented interface
+ * AccountsApi - functional programming interface
  * @export
- * @class Schemav3Api
+ */
+export declare const AccountsApiFp: (configuration?: Configuration | undefined) => {
+    /**
+     *
+     * @param {string} budgetId
+     * @param {Account} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsAccountCreate(budgetId: string, data: Account, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Account>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsAccountList(budgetId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Account>>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Account} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsAccountPartialUpdate(budgetId: string, id: string, data: Account, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Account>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsAccountRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Account>;
+    /**
+     *
+     * @param {string} accountId
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsAccountTransactionList(accountId: string, budgetId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Transaction>>;
+};
+/**
+ * AccountsApi - factory interface
+ * @export
+ */
+export declare const AccountsApiFactory: (configuration?: Configuration | undefined, fetch?: FetchAPI | undefined, basePath?: string | undefined) => {
+    /**
+     *
+     * @param {string} budgetId
+     * @param {Account} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsAccountCreate(budgetId: string, data: Account, options?: any): Promise<Account>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsAccountList(budgetId: string, options?: any): Promise<Account[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Account} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsAccountPartialUpdate(budgetId: string, id: string, data: Account, options?: any): Promise<Account>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsAccountRead(budgetId: string, id: string, options?: any): Promise<Account>;
+    /**
+     *
+     * @param {string} accountId
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsAccountTransactionList(accountId: string, budgetId: string, options?: any): Promise<Transaction[]>;
+};
+/**
+ * AccountsApi - object-oriented interface
+ * @export
+ * @class AccountsApi
  * @extends {BaseAPI}
  */
-export declare class Schemav3Api extends BaseAPI {
+export declare class AccountsApi extends BaseAPI {
     /**
      *
+     * @param {string} budgetId
+     * @param {Account} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof Schemav3Api
+     * @memberof AccountsApi
      */
-    schemav3List(options?: any): Promise<Response>;
+    budgetsAccountCreate(budgetId: string, data: Account, options?: any): Promise<Account>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    budgetsAccountList(budgetId: string, options?: any): Promise<Account[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Account} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    budgetsAccountPartialUpdate(budgetId: string, id: string, data: Account, options?: any): Promise<Account>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    budgetsAccountRead(budgetId: string, id: string, options?: any): Promise<Account>;
+    /**
+     *
+     * @param {string} accountId
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    budgetsAccountTransactionList(accountId: string, budgetId: string, options?: any): Promise<Transaction[]>;
 }
 /**
- * V1Api - fetch parameter creator
+ * BudgetsApi - fetch parameter creator
  * @export
  */
-export declare const V1ApiFetchParamCreator: (configuration?: Configuration | undefined) => {
-    /**
-     *
-     * @param {string} budgetId
-     * @param {Account} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsAccountCreate(budgetId: string, data: Account, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsAccountList(budgetId: string, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Account} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsAccountPartialUpdate(budgetId: string, id: string, data: Account, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsAccountRead(budgetId: string, id: string, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} accountId
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsAccountTransactionList(accountId: string, budgetId: string, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {Category} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryCreate(budgetId: string, data: Category, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryList(budgetId: string, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Category} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryPartialUpdate(budgetId: string, id: string, data: Category, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryRead(budgetId: string, id: string, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} categoryId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Category} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryUpdate(budgetId: string, id: string, data: Category, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {CategoryGroup} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategorygroupCreate(budgetId: string, data: CategoryGroup, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategorygroupList(budgetId: string, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {CategoryGroup} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategorygroupPartialUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategorygroupRead(budgetId: string, id: string, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {CategoryGroup} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategorygroupUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): FetchArgs;
+export declare const BudgetsApiFetchParamCreator: (configuration?: Configuration | undefined) => {
     /**
      *
      * @param {Budget} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsCreate(data: Budget, options?: any): FetchArgs;
+    budgetsCreate(data: Budget, options?: any): FetchArgs;
     /**
      *
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsDelete(id: string, options?: any): FetchArgs;
+    budgetsDelete(id: string, options?: any): FetchArgs;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsList(options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} categoryId
-     * @param {string} month
-     * @param {string} year
-     * @param {Envelope} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsMonthsCategoryPartialUpdate(budgetId: string, categoryId: string, month: string, year: string, data: Envelope, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} categoryId
-     * @param {string} month
-     * @param {string} year
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsMonthsCategoryRead(budgetId: string, categoryId: string, month: string, year: string, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsMonthsList(budgetId: string, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} month
-     * @param {string} year
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsMonthsRead(budgetId: string, month: string, year: string, options?: any): FetchArgs;
+    budgetsList(options?: any): FetchArgs;
     /**
      *
      * @param {string} id
@@ -711,96 +684,14 @@ export declare const V1ApiFetchParamCreator: (configuration?: Configuration | un
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsPartialUpdate(id: string, data: Budget, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {Payee} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsPayeeCreate(budgetId: string, data: Payee, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsPayeeList(budgetId: string, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Payee} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsPayeePartialUpdate(budgetId: string, id: string, data: Payee, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsPayeeRead(budgetId: string, id: string, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Payee} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsPayeeUpdate(budgetId: string, id: string, data: Payee, options?: any): FetchArgs;
+    budgetsPartialUpdate(id: string, data: Budget, options?: any): FetchArgs;
     /**
      *
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsRead(id: string, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {Transaction} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsTransactionCreate(budgetId: string, data: Transaction, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsTransactionList(budgetId: string, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Transaction} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsTransactionPartialUpdate(budgetId: string, id: string, data: Transaction, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsTransactionRead(budgetId: string, id: string, options?: any): FetchArgs;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Transaction} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsTransactionUpdate(budgetId: string, id: string, data: Transaction, options?: any): FetchArgs;
+    budgetsRead(id: string, options?: any): FetchArgs;
     /**
      *
      * @param {string} id
@@ -808,206 +699,33 @@ export declare const V1ApiFetchParamCreator: (configuration?: Configuration | un
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsUpdate(id: string, data: Budget, options?: any): FetchArgs;
-    /**
-     *
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1List(options?: any): FetchArgs;
+    budgetsUpdate(id: string, data: Budget, options?: any): FetchArgs;
 };
 /**
- * V1Api - functional programming interface
+ * BudgetsApi - functional programming interface
  * @export
  */
-export declare const V1ApiFp: (configuration?: Configuration | undefined) => {
-    /**
-     *
-     * @param {string} budgetId
-     * @param {Account} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsAccountCreate(budgetId: string, data: Account, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Account>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsAccountList(budgetId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Account>>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Account} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsAccountPartialUpdate(budgetId: string, id: string, data: Account, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Account>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsAccountRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Account>;
-    /**
-     *
-     * @param {string} accountId
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsAccountTransactionList(accountId: string, budgetId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Transaction>>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {Category} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryCreate(budgetId: string, data: Category, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Category>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryList(budgetId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Category>>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Category} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryPartialUpdate(budgetId: string, id: string, data: Category, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Category>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Category>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} categoryId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Transaction>>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Category} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryUpdate(budgetId: string, id: string, data: Category, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Category>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {CategoryGroup} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategorygroupCreate(budgetId: string, data: CategoryGroup, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<CategoryGroup>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategorygroupList(budgetId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<CategoryGroup>>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {CategoryGroup} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategorygroupPartialUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<CategoryGroup>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategorygroupRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<CategoryGroup>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {CategoryGroup} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategorygroupUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<CategoryGroup>;
+export declare const BudgetsApiFp: (configuration?: Configuration | undefined) => {
     /**
      *
      * @param {Budget} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsCreate(data: Budget, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Budget>;
+    budgetsCreate(data: Budget, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Budget>;
     /**
      *
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsDelete(id: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Response>;
+    budgetsDelete(id: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Response>;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsList(options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Budget>>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} categoryId
-     * @param {string} month
-     * @param {string} year
-     * @param {Envelope} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsMonthsCategoryPartialUpdate(budgetId: string, categoryId: string, month: string, year: string, data: Envelope, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Envelope>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} categoryId
-     * @param {string} month
-     * @param {string} year
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsMonthsCategoryRead(budgetId: string, categoryId: string, month: string, year: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Envelope>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsMonthsList(budgetId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Month>>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} month
-     * @param {string} year
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsMonthsRead(budgetId: string, month: string, year: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Month>;
+    budgetsList(options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Budget>>;
     /**
      *
      * @param {string} id
@@ -1015,96 +733,14 @@ export declare const V1ApiFp: (configuration?: Configuration | undefined) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsPartialUpdate(id: string, data: Budget, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Budget>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {Payee} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsPayeeCreate(budgetId: string, data: Payee, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Payee>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsPayeeList(budgetId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Payee>>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Payee} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsPayeePartialUpdate(budgetId: string, id: string, data: Payee, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Payee>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsPayeeRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Payee>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Payee} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsPayeeUpdate(budgetId: string, id: string, data: Payee, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Payee>;
+    budgetsPartialUpdate(id: string, data: Budget, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Budget>;
     /**
      *
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsRead(id: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Budget>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {Transaction} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsTransactionCreate(budgetId: string, data: Transaction, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Transaction>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsTransactionList(budgetId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Transaction>>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Transaction} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsTransactionPartialUpdate(budgetId: string, id: string, data: Transaction, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Transaction>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsTransactionRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Transaction>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Transaction} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsTransactionUpdate(budgetId: string, id: string, data: Transaction, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Transaction>;
+    budgetsRead(id: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Budget>;
     /**
      *
      * @param {string} id
@@ -1112,206 +748,33 @@ export declare const V1ApiFp: (configuration?: Configuration | undefined) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsUpdate(id: string, data: Budget, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Budget>;
-    /**
-     *
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1List(options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Response>;
+    budgetsUpdate(id: string, data: Budget, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Budget>;
 };
 /**
- * V1Api - factory interface
+ * BudgetsApi - factory interface
  * @export
  */
-export declare const V1ApiFactory: (configuration?: Configuration | undefined, fetch?: FetchAPI | undefined, basePath?: string | undefined) => {
-    /**
-     *
-     * @param {string} budgetId
-     * @param {Account} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsAccountCreate(budgetId: string, data: Account, options?: any): Promise<Account>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsAccountList(budgetId: string, options?: any): Promise<Account[]>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Account} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsAccountPartialUpdate(budgetId: string, id: string, data: Account, options?: any): Promise<Account>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsAccountRead(budgetId: string, id: string, options?: any): Promise<Account>;
-    /**
-     *
-     * @param {string} accountId
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsAccountTransactionList(accountId: string, budgetId: string, options?: any): Promise<Transaction[]>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {Category} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryCreate(budgetId: string, data: Category, options?: any): Promise<Category>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryList(budgetId: string, options?: any): Promise<Category[]>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Category} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryPartialUpdate(budgetId: string, id: string, data: Category, options?: any): Promise<Category>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryRead(budgetId: string, id: string, options?: any): Promise<Category>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} categoryId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any): Promise<Transaction[]>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Category} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategoryUpdate(budgetId: string, id: string, data: Category, options?: any): Promise<Category>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {CategoryGroup} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategorygroupCreate(budgetId: string, data: CategoryGroup, options?: any): Promise<CategoryGroup>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategorygroupList(budgetId: string, options?: any): Promise<CategoryGroup[]>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {CategoryGroup} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategorygroupPartialUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): Promise<CategoryGroup>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategorygroupRead(budgetId: string, id: string, options?: any): Promise<CategoryGroup>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {CategoryGroup} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsCategorygroupUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): Promise<CategoryGroup>;
+export declare const BudgetsApiFactory: (configuration?: Configuration | undefined, fetch?: FetchAPI | undefined, basePath?: string | undefined) => {
     /**
      *
      * @param {Budget} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsCreate(data: Budget, options?: any): Promise<Budget>;
+    budgetsCreate(data: Budget, options?: any): Promise<Budget>;
     /**
      *
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsDelete(id: string, options?: any): Promise<Response>;
+    budgetsDelete(id: string, options?: any): Promise<Response>;
     /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsList(options?: any): Promise<Budget[]>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} categoryId
-     * @param {string} month
-     * @param {string} year
-     * @param {Envelope} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsMonthsCategoryPartialUpdate(budgetId: string, categoryId: string, month: string, year: string, data: Envelope, options?: any): Promise<Envelope>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} categoryId
-     * @param {string} month
-     * @param {string} year
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsMonthsCategoryRead(budgetId: string, categoryId: string, month: string, year: string, options?: any): Promise<Envelope>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsMonthsList(budgetId: string, options?: any): Promise<Month[]>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} month
-     * @param {string} year
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsMonthsRead(budgetId: string, month: string, year: string, options?: any): Promise<Month>;
+    budgetsList(options?: any): Promise<Budget[]>;
     /**
      *
      * @param {string} id
@@ -1319,96 +782,14 @@ export declare const V1ApiFactory: (configuration?: Configuration | undefined, f
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsPartialUpdate(id: string, data: Budget, options?: any): Promise<Budget>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {Payee} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsPayeeCreate(budgetId: string, data: Payee, options?: any): Promise<Payee>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsPayeeList(budgetId: string, options?: any): Promise<Payee[]>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Payee} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsPayeePartialUpdate(budgetId: string, id: string, data: Payee, options?: any): Promise<Payee>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsPayeeRead(budgetId: string, id: string, options?: any): Promise<Payee>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Payee} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsPayeeUpdate(budgetId: string, id: string, data: Payee, options?: any): Promise<Payee>;
+    budgetsPartialUpdate(id: string, data: Budget, options?: any): Promise<Budget>;
     /**
      *
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsRead(id: string, options?: any): Promise<Budget>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {Transaction} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsTransactionCreate(budgetId: string, data: Transaction, options?: any): Promise<Transaction>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsTransactionList(budgetId: string, options?: any): Promise<Transaction[]>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Transaction} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsTransactionPartialUpdate(budgetId: string, id: string, data: Transaction, options?: any): Promise<Transaction>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsTransactionRead(budgetId: string, id: string, options?: any): Promise<Transaction>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Transaction} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1BudgetsTransactionUpdate(budgetId: string, id: string, data: Transaction, options?: any): Promise<Transaction>;
+    budgetsRead(id: string, options?: any): Promise<Budget>;
     /**
      *
      * @param {string} id
@@ -1416,83 +797,85 @@ export declare const V1ApiFactory: (configuration?: Configuration | undefined, f
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    v1BudgetsUpdate(id: string, data: Budget, options?: any): Promise<Budget>;
-    /**
-     *
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    v1List(options?: any): Promise<Response>;
+    budgetsUpdate(id: string, data: Budget, options?: any): Promise<Budget>;
 };
 /**
- * V1Api - object-oriented interface
+ * BudgetsApi - object-oriented interface
  * @export
- * @class V1Api
+ * @class BudgetsApi
  * @extends {BaseAPI}
  */
-export declare class V1Api extends BaseAPI {
+export declare class BudgetsApi extends BaseAPI {
     /**
      *
-     * @param {string} budgetId
-     * @param {Account} data
+     * @param {Budget} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
+     * @memberof BudgetsApi
      */
-    v1BudgetsAccountCreate(budgetId: string, data: Account, options?: any): Promise<Account>;
+    budgetsCreate(data: Budget, options?: any): Promise<Budget>;
     /**
      *
-     * @param {string} budgetId
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    v1BudgetsAccountList(budgetId: string, options?: any): Promise<Account[]>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {Account} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    v1BudgetsAccountPartialUpdate(budgetId: string, id: string, data: Account, options?: any): Promise<Account>;
-    /**
-     *
-     * @param {string} budgetId
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
+     * @memberof BudgetsApi
      */
-    v1BudgetsAccountRead(budgetId: string, id: string, options?: any): Promise<Account>;
+    budgetsDelete(id: string, options?: any): Promise<Response>;
     /**
      *
-     * @param {string} accountId
-     * @param {string} budgetId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
+     * @memberof BudgetsApi
      */
-    v1BudgetsAccountTransactionList(accountId: string, budgetId: string, options?: any): Promise<Transaction[]>;
+    budgetsList(options?: any): Promise<Budget[]>;
+    /**
+     *
+     * @param {string} id
+     * @param {Budget} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BudgetsApi
+     */
+    budgetsPartialUpdate(id: string, data: Budget, options?: any): Promise<Budget>;
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BudgetsApi
+     */
+    budgetsRead(id: string, options?: any): Promise<Budget>;
+    /**
+     *
+     * @param {string} id
+     * @param {Budget} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BudgetsApi
+     */
+    budgetsUpdate(id: string, data: Budget, options?: any): Promise<Budget>;
+}
+/**
+ * CategoriesApi - fetch parameter creator
+ * @export
+ */
+export declare const CategoriesApiFetchParamCreator: (configuration?: Configuration | undefined) => {
     /**
      *
      * @param {string} budgetId
      * @param {Category} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsCategoryCreate(budgetId: string, data: Category, options?: any): Promise<Category>;
+    budgetsCategoryCreate(budgetId: string, data: Category, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsCategoryList(budgetId: string, options?: any): Promise<Category[]>;
+    budgetsCategoryList(budgetId: string, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
@@ -1500,27 +883,24 @@ export declare class V1Api extends BaseAPI {
      * @param {Category} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsCategoryPartialUpdate(budgetId: string, id: string, data: Category, options?: any): Promise<Category>;
+    budgetsCategoryPartialUpdate(budgetId: string, id: string, data: Category, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsCategoryRead(budgetId: string, id: string, options?: any): Promise<Category>;
+    budgetsCategoryRead(budgetId: string, id: string, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
      * @param {string} categoryId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any): Promise<Transaction[]>;
+    budgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
@@ -1528,45 +908,23 @@ export declare class V1Api extends BaseAPI {
      * @param {Category} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsCategoryUpdate(budgetId: string, id: string, data: Category, options?: any): Promise<Category>;
+    budgetsCategoryUpdate(budgetId: string, id: string, data: Category, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
      * @param {CategoryGroup} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsCategorygroupCreate(budgetId: string, data: CategoryGroup, options?: any): Promise<CategoryGroup>;
+    budgetsCategorygroupsCreate(budgetId: string, data: CategoryGroup, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsCategorygroupList(budgetId: string, options?: any): Promise<CategoryGroup[]>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {CategoryGroup} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    v1BudgetsCategorygroupPartialUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): Promise<CategoryGroup>;
-    /**
-     *
-     * @param {string} budgetId
-     * @param {string} id
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    v1BudgetsCategorygroupRead(budgetId: string, id: string, options?: any): Promise<CategoryGroup>;
+    budgetsCategorygroupsList(budgetId: string, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
@@ -1574,32 +932,332 @@ export declare class V1Api extends BaseAPI {
      * @param {CategoryGroup} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsCategorygroupUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): Promise<CategoryGroup>;
+    budgetsCategorygroupsPartialUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): FetchArgs;
     /**
      *
-     * @param {Budget} data
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    v1BudgetsCreate(data: Budget, options?: any): Promise<Budget>;
-    /**
-     *
+     * @param {string} budgetId
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsDelete(id: string, options?: any): Promise<Response>;
+    budgetsCategorygroupsRead(budgetId: string, id: string, options?: any): FetchArgs;
     /**
      *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {CategoryGroup} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsList(options?: any): Promise<Budget[]>;
+    budgetsCategorygroupsUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): FetchArgs;
+};
+/**
+ * CategoriesApi - functional programming interface
+ * @export
+ */
+export declare const CategoriesApiFp: (configuration?: Configuration | undefined) => {
+    /**
+     *
+     * @param {string} budgetId
+     * @param {Category} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategoryCreate(budgetId: string, data: Category, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Category>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategoryList(budgetId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Category>>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Category} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategoryPartialUpdate(budgetId: string, id: string, data: Category, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Category>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategoryRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Category>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} categoryId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Transaction>>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Category} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategoryUpdate(budgetId: string, id: string, data: Category, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Category>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {CategoryGroup} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategorygroupsCreate(budgetId: string, data: CategoryGroup, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<CategoryGroup>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategorygroupsList(budgetId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<CategoryGroup>>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {CategoryGroup} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategorygroupsPartialUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<CategoryGroup>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategorygroupsRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<CategoryGroup>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {CategoryGroup} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategorygroupsUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<CategoryGroup>;
+};
+/**
+ * CategoriesApi - factory interface
+ * @export
+ */
+export declare const CategoriesApiFactory: (configuration?: Configuration | undefined, fetch?: FetchAPI | undefined, basePath?: string | undefined) => {
+    /**
+     *
+     * @param {string} budgetId
+     * @param {Category} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategoryCreate(budgetId: string, data: Category, options?: any): Promise<Category>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategoryList(budgetId: string, options?: any): Promise<Category[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Category} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategoryPartialUpdate(budgetId: string, id: string, data: Category, options?: any): Promise<Category>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategoryRead(budgetId: string, id: string, options?: any): Promise<Category>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} categoryId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any): Promise<Transaction[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Category} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategoryUpdate(budgetId: string, id: string, data: Category, options?: any): Promise<Category>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {CategoryGroup} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategorygroupsCreate(budgetId: string, data: CategoryGroup, options?: any): Promise<CategoryGroup>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategorygroupsList(budgetId: string, options?: any): Promise<CategoryGroup[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {CategoryGroup} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategorygroupsPartialUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): Promise<CategoryGroup>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategorygroupsRead(budgetId: string, id: string, options?: any): Promise<CategoryGroup>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {CategoryGroup} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategorygroupsUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): Promise<CategoryGroup>;
+};
+/**
+ * CategoriesApi - object-oriented interface
+ * @export
+ * @class CategoriesApi
+ * @extends {BaseAPI}
+ */
+export declare class CategoriesApi extends BaseAPI {
+    /**
+     *
+     * @param {string} budgetId
+     * @param {Category} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    budgetsCategoryCreate(budgetId: string, data: Category, options?: any): Promise<Category>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    budgetsCategoryList(budgetId: string, options?: any): Promise<Category[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Category} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    budgetsCategoryPartialUpdate(budgetId: string, id: string, data: Category, options?: any): Promise<Category>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    budgetsCategoryRead(budgetId: string, id: string, options?: any): Promise<Category>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} categoryId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    budgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any): Promise<Transaction[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Category} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    budgetsCategoryUpdate(budgetId: string, id: string, data: Category, options?: any): Promise<Category>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {CategoryGroup} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    budgetsCategorygroupsCreate(budgetId: string, data: CategoryGroup, options?: any): Promise<CategoryGroup>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    budgetsCategorygroupsList(budgetId: string, options?: any): Promise<CategoryGroup[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {CategoryGroup} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    budgetsCategorygroupsPartialUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): Promise<CategoryGroup>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    budgetsCategorygroupsRead(budgetId: string, id: string, options?: any): Promise<CategoryGroup>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {CategoryGroup} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    budgetsCategorygroupsUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): Promise<CategoryGroup>;
+}
+/**
+ * EnvelopesApi - fetch parameter creator
+ * @export
+ */
+export declare const EnvelopesApiFetchParamCreator: (configuration?: Configuration | undefined) => {
     /**
      *
      * @param {string} budgetId
@@ -1609,9 +1267,8 @@ export declare class V1Api extends BaseAPI {
      * @param {Envelope} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsMonthsCategoryPartialUpdate(budgetId: string, categoryId: string, month: string, year: string, data: Envelope, options?: any): Promise<Envelope>;
+    budgetsMonthsCategoryPartialUpdate(budgetId: string, categoryId: string, month: string, year: string, data: Envelope, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
@@ -1620,17 +1277,106 @@ export declare class V1Api extends BaseAPI {
      * @param {string} year
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsMonthsCategoryRead(budgetId: string, categoryId: string, month: string, year: string, options?: any): Promise<Envelope>;
+    budgetsMonthsCategoryRead(budgetId: string, categoryId: string, month: string, year: string, options?: any): FetchArgs;
+};
+/**
+ * EnvelopesApi - functional programming interface
+ * @export
+ */
+export declare const EnvelopesApiFp: (configuration?: Configuration | undefined) => {
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} categoryId
+     * @param {string} month
+     * @param {string} year
+     * @param {Envelope} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsMonthsCategoryPartialUpdate(budgetId: string, categoryId: string, month: string, year: string, data: Envelope, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Envelope>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} categoryId
+     * @param {string} month
+     * @param {string} year
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsMonthsCategoryRead(budgetId: string, categoryId: string, month: string, year: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Envelope>;
+};
+/**
+ * EnvelopesApi - factory interface
+ * @export
+ */
+export declare const EnvelopesApiFactory: (configuration?: Configuration | undefined, fetch?: FetchAPI | undefined, basePath?: string | undefined) => {
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} categoryId
+     * @param {string} month
+     * @param {string} year
+     * @param {Envelope} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsMonthsCategoryPartialUpdate(budgetId: string, categoryId: string, month: string, year: string, data: Envelope, options?: any): Promise<Envelope>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} categoryId
+     * @param {string} month
+     * @param {string} year
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsMonthsCategoryRead(budgetId: string, categoryId: string, month: string, year: string, options?: any): Promise<Envelope>;
+};
+/**
+ * EnvelopesApi - object-oriented interface
+ * @export
+ * @class EnvelopesApi
+ * @extends {BaseAPI}
+ */
+export declare class EnvelopesApi extends BaseAPI {
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} categoryId
+     * @param {string} month
+     * @param {string} year
+     * @param {Envelope} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnvelopesApi
+     */
+    budgetsMonthsCategoryPartialUpdate(budgetId: string, categoryId: string, month: string, year: string, data: Envelope, options?: any): Promise<Envelope>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} categoryId
+     * @param {string} month
+     * @param {string} year
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnvelopesApi
+     */
+    budgetsMonthsCategoryRead(budgetId: string, categoryId: string, month: string, year: string, options?: any): Promise<Envelope>;
+}
+/**
+ * MonthsApi - fetch parameter creator
+ * @export
+ */
+export declare const MonthsApiFetchParamCreator: (configuration?: Configuration | undefined) => {
     /**
      *
      * @param {string} budgetId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsMonthsList(budgetId: string, options?: any): Promise<Month[]>;
+    budgetsMonthsList(budgetId: string, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
@@ -1638,35 +1384,99 @@ export declare class V1Api extends BaseAPI {
      * @param {string} year
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsMonthsRead(budgetId: string, month: string, year: string, options?: any): Promise<Month>;
+    budgetsMonthsRead(budgetId: string, month: string, year: string, options?: any): FetchArgs;
+};
+/**
+ * MonthsApi - functional programming interface
+ * @export
+ */
+export declare const MonthsApiFp: (configuration?: Configuration | undefined) => {
     /**
      *
-     * @param {string} id
-     * @param {Budget} data
+     * @param {string} budgetId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsPartialUpdate(id: string, data: Budget, options?: any): Promise<Budget>;
+    budgetsMonthsList(budgetId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Month>>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} month
+     * @param {string} year
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsMonthsRead(budgetId: string, month: string, year: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Month>;
+};
+/**
+ * MonthsApi - factory interface
+ * @export
+ */
+export declare const MonthsApiFactory: (configuration?: Configuration | undefined, fetch?: FetchAPI | undefined, basePath?: string | undefined) => {
+    /**
+     *
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsMonthsList(budgetId: string, options?: any): Promise<Month[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} month
+     * @param {string} year
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsMonthsRead(budgetId: string, month: string, year: string, options?: any): Promise<Month>;
+};
+/**
+ * MonthsApi - object-oriented interface
+ * @export
+ * @class MonthsApi
+ * @extends {BaseAPI}
+ */
+export declare class MonthsApi extends BaseAPI {
+    /**
+     *
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MonthsApi
+     */
+    budgetsMonthsList(budgetId: string, options?: any): Promise<Month[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} month
+     * @param {string} year
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MonthsApi
+     */
+    budgetsMonthsRead(budgetId: string, month: string, year: string, options?: any): Promise<Month>;
+}
+/**
+ * PayeesApi - fetch parameter creator
+ * @export
+ */
+export declare const PayeesApiFetchParamCreator: (configuration?: Configuration | undefined) => {
     /**
      *
      * @param {string} budgetId
      * @param {Payee} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsPayeeCreate(budgetId: string, data: Payee, options?: any): Promise<Payee>;
+    budgetsPayeeCreate(budgetId: string, data: Payee, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsPayeeList(budgetId: string, options?: any): Promise<Payee[]>;
+    budgetsPayeeList(budgetId: string, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
@@ -1674,18 +1484,16 @@ export declare class V1Api extends BaseAPI {
      * @param {Payee} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsPayeePartialUpdate(budgetId: string, id: string, data: Payee, options?: any): Promise<Payee>;
+    budgetsPayeePartialUpdate(budgetId: string, id: string, data: Payee, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsPayeeRead(budgetId: string, id: string, options?: any): Promise<Payee>;
+    budgetsPayeeRead(budgetId: string, id: string, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
@@ -1693,34 +1501,193 @@ export declare class V1Api extends BaseAPI {
      * @param {Payee} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsPayeeUpdate(budgetId: string, id: string, data: Payee, options?: any): Promise<Payee>;
+    budgetsPayeeUpdate(budgetId: string, id: string, data: Payee, options?: any): FetchArgs;
+};
+/**
+ * PayeesApi - functional programming interface
+ * @export
+ */
+export declare const PayeesApiFp: (configuration?: Configuration | undefined) => {
     /**
      *
+     * @param {string} budgetId
+     * @param {Payee} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsPayeeCreate(budgetId: string, data: Payee, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Payee>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsPayeeList(budgetId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Payee>>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Payee} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsPayeePartialUpdate(budgetId: string, id: string, data: Payee, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Payee>;
+    /**
+     *
+     * @param {string} budgetId
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsRead(id: string, options?: any): Promise<Budget>;
+    budgetsPayeeRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Payee>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Payee} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsPayeeUpdate(budgetId: string, id: string, data: Payee, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Payee>;
+};
+/**
+ * PayeesApi - factory interface
+ * @export
+ */
+export declare const PayeesApiFactory: (configuration?: Configuration | undefined, fetch?: FetchAPI | undefined, basePath?: string | undefined) => {
+    /**
+     *
+     * @param {string} budgetId
+     * @param {Payee} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsPayeeCreate(budgetId: string, data: Payee, options?: any): Promise<Payee>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsPayeeList(budgetId: string, options?: any): Promise<Payee[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Payee} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsPayeePartialUpdate(budgetId: string, id: string, data: Payee, options?: any): Promise<Payee>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsPayeeRead(budgetId: string, id: string, options?: any): Promise<Payee>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Payee} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsPayeeUpdate(budgetId: string, id: string, data: Payee, options?: any): Promise<Payee>;
+};
+/**
+ * PayeesApi - object-oriented interface
+ * @export
+ * @class PayeesApi
+ * @extends {BaseAPI}
+ */
+export declare class PayeesApi extends BaseAPI {
+    /**
+     *
+     * @param {string} budgetId
+     * @param {Payee} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PayeesApi
+     */
+    budgetsPayeeCreate(budgetId: string, data: Payee, options?: any): Promise<Payee>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PayeesApi
+     */
+    budgetsPayeeList(budgetId: string, options?: any): Promise<Payee[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Payee} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PayeesApi
+     */
+    budgetsPayeePartialUpdate(budgetId: string, id: string, data: Payee, options?: any): Promise<Payee>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PayeesApi
+     */
+    budgetsPayeeRead(budgetId: string, id: string, options?: any): Promise<Payee>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Payee} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PayeesApi
+     */
+    budgetsPayeeUpdate(budgetId: string, id: string, data: Payee, options?: any): Promise<Payee>;
+}
+/**
+ * TransactionsApi - fetch parameter creator
+ * @export
+ */
+export declare const TransactionsApiFetchParamCreator: (configuration?: Configuration | undefined) => {
+    /**
+     *
+     * @param {string} accountId
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsAccountTransactionList(accountId: string, budgetId: string, options?: any): FetchArgs;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} categoryId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
      * @param {Transaction} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsTransactionCreate(budgetId: string, data: Transaction, options?: any): Promise<Transaction>;
+    budgetsTransactionCreate(budgetId: string, data: Transaction, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsTransactionList(budgetId: string, options?: any): Promise<Transaction[]>;
+    budgetsTransactionList(budgetId: string, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
@@ -1728,18 +1695,16 @@ export declare class V1Api extends BaseAPI {
      * @param {Transaction} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsTransactionPartialUpdate(budgetId: string, id: string, data: Transaction, options?: any): Promise<Transaction>;
+    budgetsTransactionPartialUpdate(budgetId: string, id: string, data: Transaction, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsTransactionRead(budgetId: string, id: string, options?: any): Promise<Transaction>;
+    budgetsTransactionRead(budgetId: string, id: string, options?: any): FetchArgs;
     /**
      *
      * @param {string} budgetId
@@ -1747,23 +1712,204 @@ export declare class V1Api extends BaseAPI {
      * @param {Transaction} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsTransactionUpdate(budgetId: string, id: string, data: Transaction, options?: any): Promise<Transaction>;
+    budgetsTransactionUpdate(budgetId: string, id: string, data: Transaction, options?: any): FetchArgs;
+};
+/**
+ * TransactionsApi - functional programming interface
+ * @export
+ */
+export declare const TransactionsApiFp: (configuration?: Configuration | undefined) => {
     /**
      *
+     * @param {string} accountId
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsAccountTransactionList(accountId: string, budgetId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Transaction>>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} categoryId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Transaction>>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {Transaction} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsTransactionCreate(budgetId: string, data: Transaction, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Transaction>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsTransactionList(budgetId: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Array<Transaction>>;
+    /**
+     *
+     * @param {string} budgetId
      * @param {string} id
-     * @param {Budget} data
+     * @param {Transaction} data
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1BudgetsUpdate(id: string, data: Budget, options?: any): Promise<Budget>;
+    budgetsTransactionPartialUpdate(budgetId: string, id: string, data: Transaction, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Transaction>;
     /**
      *
+     * @param {string} budgetId
+     * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
      */
-    v1List(options?: any): Promise<Response>;
+    budgetsTransactionRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Transaction>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Transaction} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsTransactionUpdate(budgetId: string, id: string, data: Transaction, options?: any): (fetch?: FetchAPI | undefined, basePath?: string | undefined) => Promise<Transaction>;
+};
+/**
+ * TransactionsApi - factory interface
+ * @export
+ */
+export declare const TransactionsApiFactory: (configuration?: Configuration | undefined, fetch?: FetchAPI | undefined, basePath?: string | undefined) => {
+    /**
+     *
+     * @param {string} accountId
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsAccountTransactionList(accountId: string, budgetId: string, options?: any): Promise<Transaction[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} categoryId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any): Promise<Transaction[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {Transaction} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsTransactionCreate(budgetId: string, data: Transaction, options?: any): Promise<Transaction>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsTransactionList(budgetId: string, options?: any): Promise<Transaction[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Transaction} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsTransactionPartialUpdate(budgetId: string, id: string, data: Transaction, options?: any): Promise<Transaction>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsTransactionRead(budgetId: string, id: string, options?: any): Promise<Transaction>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Transaction} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    budgetsTransactionUpdate(budgetId: string, id: string, data: Transaction, options?: any): Promise<Transaction>;
+};
+/**
+ * TransactionsApi - object-oriented interface
+ * @export
+ * @class TransactionsApi
+ * @extends {BaseAPI}
+ */
+export declare class TransactionsApi extends BaseAPI {
+    /**
+     *
+     * @param {string} accountId
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    budgetsAccountTransactionList(accountId: string, budgetId: string, options?: any): Promise<Transaction[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} categoryId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    budgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any): Promise<Transaction[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {Transaction} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    budgetsTransactionCreate(budgetId: string, data: Transaction, options?: any): Promise<Transaction>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    budgetsTransactionList(budgetId: string, options?: any): Promise<Transaction[]>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Transaction} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    budgetsTransactionPartialUpdate(budgetId: string, id: string, data: Transaction, options?: any): Promise<Transaction>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    budgetsTransactionRead(budgetId: string, id: string, options?: any): Promise<Transaction>;
+    /**
+     *
+     * @param {string} budgetId
+     * @param {string} id
+     * @param {Transaction} data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TransactionsApi
+     */
+    budgetsTransactionUpdate(budgetId: string, id: string, data: Transaction, options?: any): Promise<Transaction>;
 }

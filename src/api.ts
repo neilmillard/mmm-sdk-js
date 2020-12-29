@@ -17,7 +17,7 @@ import * as url from "url";
 import * as portableFetch from "portable-fetch";
 import { Configuration } from "./configuration";
 
-const BASE_PATH = "http://127.0.0.1:8000".replace(/\/+$/, "");
+const BASE_PATH = "http://127.0.0.1:8000/v1".replace(/\/+$/, "");
 
 /**
  *
@@ -490,109 +490,10 @@ export namespace Transaction {
 
 
 /**
- * Schemav3Api - fetch parameter creator
+ * AccountsApi - fetch parameter creator
  * @export
  */
-export const Schemav3ApiFetchParamCreator = function (configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        schemav3List(options: any = {}): FetchArgs {
-            const localVarPath = `/schemav3/`;
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    }
-};
-
-/**
- * Schemav3Api - functional programming interface
- * @export
- */
-export const Schemav3ApiFp = function(configuration?: Configuration) {
-    return {
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        schemav3List(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = Schemav3ApiFetchParamCreator(configuration).schemav3List(options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response;
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-    }
-};
-
-/**
- * Schemav3Api - factory interface
- * @export
- */
-export const Schemav3ApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
-    return {
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        schemav3List(options?: any) {
-            return Schemav3ApiFp(configuration).schemav3List(options)(fetch, basePath);
-        },
-    };
-};
-
-/**
- * Schemav3Api - object-oriented interface
- * @export
- * @class Schemav3Api
- * @extends {BaseAPI}
- */
-export class Schemav3Api extends BaseAPI {
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof Schemav3Api
-     */
-    public schemav3List(options?: any) {
-        return Schemav3ApiFp(this.configuration).schemav3List(options)(this.fetch, this.basePath);
-    }
-
-}
-
-/**
- * V1Api - fetch parameter creator
- * @export
- */
-export const V1ApiFetchParamCreator = function (configuration?: Configuration) {
+export const AccountsApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
@@ -601,16 +502,16 @@ export const V1ApiFetchParamCreator = function (configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsAccountCreate(budgetId: string, data: Account, options: any = {}): FetchArgs {
+        budgetsAccountCreate(budgetId: string, data: Account, options: any = {}): FetchArgs {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsAccountCreate.');
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsAccountCreate.');
             }
             // verify required parameter 'data' is not null or undefined
             if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsAccountCreate.');
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsAccountCreate.');
             }
-            const localVarPath = `/v1/budgets/{budget_id}/account/`
+            const localVarPath = `/budgets/{budget_id}/account/`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
@@ -643,12 +544,12 @@ export const V1ApiFetchParamCreator = function (configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsAccountList(budgetId: string, options: any = {}): FetchArgs {
+        budgetsAccountList(budgetId: string, options: any = {}): FetchArgs {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsAccountList.');
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsAccountList.');
             }
-            const localVarPath = `/v1/budgets/{budget_id}/account/`
+            const localVarPath = `/budgets/{budget_id}/account/`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -679,20 +580,20 @@ export const V1ApiFetchParamCreator = function (configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsAccountPartialUpdate(budgetId: string, id: string, data: Account, options: any = {}): FetchArgs {
+        budgetsAccountPartialUpdate(budgetId: string, id: string, data: Account, options: any = {}): FetchArgs {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsAccountPartialUpdate.');
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsAccountPartialUpdate.');
             }
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsAccountPartialUpdate.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsAccountPartialUpdate.');
             }
             // verify required parameter 'data' is not null or undefined
             if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsAccountPartialUpdate.');
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsAccountPartialUpdate.');
             }
-            const localVarPath = `/v1/budgets/{budget_id}/account/{id}/`
+            const localVarPath = `/budgets/{budget_id}/account/{id}/`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -727,16 +628,16 @@ export const V1ApiFetchParamCreator = function (configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsAccountRead(budgetId: string, id: string, options: any = {}): FetchArgs {
+        budgetsAccountRead(budgetId: string, id: string, options: any = {}): FetchArgs {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsAccountRead.');
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsAccountRead.');
             }
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsAccountRead.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsAccountRead.');
             }
-            const localVarPath = `/v1/budgets/{budget_id}/account/{id}/`
+            const localVarPath = `/budgets/{budget_id}/account/{id}/`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -767,16 +668,16 @@ export const V1ApiFetchParamCreator = function (configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsAccountTransactionList(accountId: string, budgetId: string, options: any = {}): FetchArgs {
+        budgetsAccountTransactionList(accountId: string, budgetId: string, options: any = {}): FetchArgs {
             // verify required parameter 'accountId' is not null or undefined
             if (accountId === null || accountId === undefined) {
-                throw new RequiredError('accountId','Required parameter accountId was null or undefined when calling v1BudgetsAccountTransactionList.');
+                throw new RequiredError('accountId','Required parameter accountId was null or undefined when calling budgetsAccountTransactionList.');
             }
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsAccountTransactionList.');
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsAccountTransactionList.');
             }
-            const localVarPath = `/v1/budgets/{budget_id}/account/{account_id}/transaction/`
+            const localVarPath = `/budgets/{budget_id}/account/{account_id}/transaction/`
                 .replace(`{${"account_id"}}`, encodeURIComponent(String(accountId)))
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -800,47 +701,32 @@ export const V1ApiFetchParamCreator = function (configuration?: Configuration) {
                 options: localVarRequestOptions,
             };
         },
+    }
+};
+
+/**
+ * AccountsApi - functional programming interface
+ * @export
+ */
+export const AccountsApiFp = function(configuration?: Configuration) {
+    return {
         /**
          * 
          * @param {string} budgetId 
-         * @param {Category} data 
+         * @param {Account} data 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsCategoryCreate(budgetId: string, data: Category, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsCategoryCreate.');
-            }
-            // verify required parameter 'data' is not null or undefined
-            if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsCategoryCreate.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/category/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"Category" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
+        budgetsAccountCreate(budgetId: string, data: Account, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Account> {
+            const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).budgetsAccountCreate(budgetId, data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
             };
         },
         /**
@@ -849,81 +735,36 @@ export const V1ApiFetchParamCreator = function (configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsCategoryList(budgetId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsCategoryList.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/category/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
+        budgetsAccountList(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Account>> {
+            const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).budgetsAccountList(budgetId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
             };
         },
         /**
          * 
          * @param {string} budgetId 
          * @param {string} id 
-         * @param {Category} data 
+         * @param {Account} data 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsCategoryPartialUpdate(budgetId: string, id: string, data: Category, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsCategoryPartialUpdate.');
-            }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsCategoryPartialUpdate.');
-            }
-            // verify required parameter 'data' is not null or undefined
-            if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsCategoryPartialUpdate.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/category/{id}/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"Category" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
+        budgetsAccountPartialUpdate(budgetId: string, id: string, data: Account, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Account> {
+            const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).budgetsAccountPartialUpdate(budgetId, id, data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
             };
         },
         /**
@@ -933,253 +774,75 @@ export const V1ApiFetchParamCreator = function (configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsCategoryRead(budgetId: string, id: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsCategoryRead.');
-            }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsCategoryRead.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/category/{id}/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
+        budgetsAccountRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Account> {
+            const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).budgetsAccountRead(budgetId, id, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
             };
         },
         /**
          * 
+         * @param {string} accountId 
          * @param {string} budgetId 
-         * @param {string} categoryId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsCategoryTransactionList(budgetId: string, categoryId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsCategoryTransactionList.');
-            }
-            // verify required parameter 'categoryId' is not null or undefined
-            if (categoryId === null || categoryId === undefined) {
-                throw new RequiredError('categoryId','Required parameter categoryId was null or undefined when calling v1BudgetsCategoryTransactionList.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/category/{category_id}/transaction/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"category_id"}}`, encodeURIComponent(String(categoryId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
+        budgetsAccountTransactionList(accountId: string, budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Transaction>> {
+            const localVarFetchArgs = AccountsApiFetchParamCreator(configuration).budgetsAccountTransactionList(accountId, budgetId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
             };
+        },
+    }
+};
+
+/**
+ * AccountsApi - factory interface
+ * @export
+ */
+export const AccountsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {Account} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsAccountCreate(budgetId: string, data: Account, options?: any) {
+            return AccountsApiFp(configuration).budgetsAccountCreate(budgetId, data, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsAccountList(budgetId: string, options?: any) {
+            return AccountsApiFp(configuration).budgetsAccountList(budgetId, options)(fetch, basePath);
         },
         /**
          * 
          * @param {string} budgetId 
          * @param {string} id 
-         * @param {Category} data 
+         * @param {Account} data 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsCategoryUpdate(budgetId: string, id: string, data: Category, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsCategoryUpdate.');
-            }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsCategoryUpdate.');
-            }
-            // verify required parameter 'data' is not null or undefined
-            if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsCategoryUpdate.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/category/{id}/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"Category" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {CategoryGroup} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategorygroupCreate(budgetId: string, data: CategoryGroup, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsCategorygroupCreate.');
-            }
-            // verify required parameter 'data' is not null or undefined
-            if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsCategorygroupCreate.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/categorygroup/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"CategoryGroup" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategorygroupList(budgetId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsCategorygroupList.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/categorygroup/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {CategoryGroup} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategorygroupPartialUpdate(budgetId: string, id: string, data: CategoryGroup, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsCategorygroupPartialUpdate.');
-            }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsCategorygroupPartialUpdate.');
-            }
-            // verify required parameter 'data' is not null or undefined
-            if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsCategorygroupPartialUpdate.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/categorygroup/{id}/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"CategoryGroup" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
+        budgetsAccountPartialUpdate(budgetId: string, id: string, data: Account, options?: any) {
+            return AccountsApiFp(configuration).budgetsAccountPartialUpdate(budgetId, id, data, options)(fetch, basePath);
         },
         /**
          * 
@@ -1188,100 +851,109 @@ export const V1ApiFetchParamCreator = function (configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsCategorygroupRead(budgetId: string, id: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsCategorygroupRead.');
-            }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsCategorygroupRead.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/categorygroup/{id}/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
+        budgetsAccountRead(budgetId: string, id: string, options?: any) {
+            return AccountsApiFp(configuration).budgetsAccountRead(budgetId, id, options)(fetch, basePath);
         },
         /**
          * 
+         * @param {string} accountId 
          * @param {string} budgetId 
-         * @param {string} id 
-         * @param {CategoryGroup} data 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsCategorygroupUpdate(budgetId: string, id: string, data: CategoryGroup, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsCategorygroupUpdate.');
-            }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsCategorygroupUpdate.');
-            }
-            // verify required parameter 'data' is not null or undefined
-            if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsCategorygroupUpdate.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/categorygroup/{id}/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"CategoryGroup" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
+        budgetsAccountTransactionList(accountId: string, budgetId: string, options?: any) {
+            return AccountsApiFp(configuration).budgetsAccountTransactionList(accountId, budgetId, options)(fetch, basePath);
         },
+    };
+};
+
+/**
+ * AccountsApi - object-oriented interface
+ * @export
+ * @class AccountsApi
+ * @extends {BaseAPI}
+ */
+export class AccountsApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {Account} data 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public budgetsAccountCreate(budgetId: string, data: Account, options?: any) {
+        return AccountsApiFp(this.configuration).budgetsAccountCreate(budgetId, data, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public budgetsAccountList(budgetId: string, options?: any) {
+        return AccountsApiFp(this.configuration).budgetsAccountList(budgetId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {string} id 
+     * @param {Account} data 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public budgetsAccountPartialUpdate(budgetId: string, id: string, data: Account, options?: any) {
+        return AccountsApiFp(this.configuration).budgetsAccountPartialUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public budgetsAccountRead(budgetId: string, id: string, options?: any) {
+        return AccountsApiFp(this.configuration).budgetsAccountRead(budgetId, id, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} accountId 
+     * @param {string} budgetId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountsApi
+     */
+    public budgetsAccountTransactionList(accountId: string, budgetId: string, options?: any) {
+        return AccountsApiFp(this.configuration).budgetsAccountTransactionList(accountId, budgetId, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * BudgetsApi - fetch parameter creator
+ * @export
+ */
+export const BudgetsApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
         /**
          * 
          * @param {Budget} data 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsCreate(data: Budget, options: any = {}): FetchArgs {
+        budgetsCreate(data: Budget, options: any = {}): FetchArgs {
             // verify required parameter 'data' is not null or undefined
             if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsCreate.');
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsCreate.');
             }
-            const localVarPath = `/v1/budgets/`;
+            const localVarPath = `/budgets/`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             const localVarHeaderParameter = {} as any;
@@ -1313,12 +985,12 @@ export const V1ApiFetchParamCreator = function (configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsDelete(id: string, options: any = {}): FetchArgs {
+        budgetsDelete(id: string, options: any = {}): FetchArgs {
             // verify required parameter 'id' is not null or undefined
             if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsDelete.');
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsDelete.');
             }
-            const localVarPath = `/v1/budgets/{id}/`
+            const localVarPath = `/budgets/{id}/`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
@@ -1346,8 +1018,561 @@ export const V1ApiFetchParamCreator = function (configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsList(options: any = {}): FetchArgs {
-            const localVarPath = `/v1/budgets/`;
+        budgetsList(options: any = {}): FetchArgs {
+            const localVarPath = `/budgets/`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {Budget} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPartialUpdate(id: string, data: Budget, options: any = {}): FetchArgs {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsPartialUpdate.');
+            }
+            // verify required parameter 'data' is not null or undefined
+            if (data === null || data === undefined) {
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsPartialUpdate.');
+            }
+            const localVarPath = `/budgets/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"Budget" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsRead(id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsRead.');
+            }
+            const localVarPath = `/budgets/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {Budget} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsUpdate(id: string, data: Budget, options: any = {}): FetchArgs {
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsUpdate.');
+            }
+            // verify required parameter 'data' is not null or undefined
+            if (data === null || data === undefined) {
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsUpdate.');
+            }
+            const localVarPath = `/budgets/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"Budget" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * BudgetsApi - functional programming interface
+ * @export
+ */
+export const BudgetsApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {Budget} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCreate(data: Budget, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Budget> {
+            const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).budgetsCreate(data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsDelete(id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).budgetsDelete(id, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsList(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Budget>> {
+            const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).budgetsList(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {Budget} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPartialUpdate(id: string, data: Budget, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Budget> {
+            const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).budgetsPartialUpdate(id, data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsRead(id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Budget> {
+            const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).budgetsRead(id, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {Budget} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsUpdate(id: string, data: Budget, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Budget> {
+            const localVarFetchArgs = BudgetsApiFetchParamCreator(configuration).budgetsUpdate(id, data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * BudgetsApi - factory interface
+ * @export
+ */
+export const BudgetsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * 
+         * @param {Budget} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCreate(data: Budget, options?: any) {
+            return BudgetsApiFp(configuration).budgetsCreate(data, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsDelete(id: string, options?: any) {
+            return BudgetsApiFp(configuration).budgetsDelete(id, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsList(options?: any) {
+            return BudgetsApiFp(configuration).budgetsList(options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {Budget} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPartialUpdate(id: string, data: Budget, options?: any) {
+            return BudgetsApiFp(configuration).budgetsPartialUpdate(id, data, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsRead(id: string, options?: any) {
+            return BudgetsApiFp(configuration).budgetsRead(id, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} id 
+         * @param {Budget} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsUpdate(id: string, data: Budget, options?: any) {
+            return BudgetsApiFp(configuration).budgetsUpdate(id, data, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * BudgetsApi - object-oriented interface
+ * @export
+ * @class BudgetsApi
+ * @extends {BaseAPI}
+ */
+export class BudgetsApi extends BaseAPI {
+    /**
+     * 
+     * @param {Budget} data 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BudgetsApi
+     */
+    public budgetsCreate(data: Budget, options?: any) {
+        return BudgetsApiFp(this.configuration).budgetsCreate(data, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BudgetsApi
+     */
+    public budgetsDelete(id: string, options?: any) {
+        return BudgetsApiFp(this.configuration).budgetsDelete(id, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BudgetsApi
+     */
+    public budgetsList(options?: any) {
+        return BudgetsApiFp(this.configuration).budgetsList(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {Budget} data 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BudgetsApi
+     */
+    public budgetsPartialUpdate(id: string, data: Budget, options?: any) {
+        return BudgetsApiFp(this.configuration).budgetsPartialUpdate(id, data, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BudgetsApi
+     */
+    public budgetsRead(id: string, options?: any) {
+        return BudgetsApiFp(this.configuration).budgetsRead(id, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} id 
+     * @param {Budget} data 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof BudgetsApi
+     */
+    public budgetsUpdate(id: string, data: Budget, options?: any) {
+        return BudgetsApiFp(this.configuration).budgetsUpdate(id, data, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * CategoriesApi - fetch parameter creator
+ * @export
+ */
+export const CategoriesApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {Category} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryCreate(budgetId: string, data: Category, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsCategoryCreate.');
+            }
+            // verify required parameter 'data' is not null or undefined
+            if (data === null || data === undefined) {
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsCategoryCreate.');
+            }
+            const localVarPath = `/budgets/{budget_id}/category/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"Category" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryList(budgetId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsCategoryList.');
+            }
+            const localVarPath = `/budgets/{budget_id}/category/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Category} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryPartialUpdate(budgetId: string, id: string, data: Category, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsCategoryPartialUpdate.');
+            }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsCategoryPartialUpdate.');
+            }
+            // verify required parameter 'data' is not null or undefined
+            if (data === null || data === undefined) {
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsCategoryPartialUpdate.');
+            }
+            const localVarPath = `/budgets/{budget_id}/category/{id}/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"Category" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryRead(budgetId: string, id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsCategoryRead.');
+            }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsCategoryRead.');
+            }
+            const localVarPath = `/budgets/{budget_id}/category/{id}/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -1373,34 +1598,831 @@ export const V1ApiFetchParamCreator = function (configuration?: Configuration) {
          * 
          * @param {string} budgetId 
          * @param {string} categoryId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryTransactionList(budgetId: string, categoryId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsCategoryTransactionList.');
+            }
+            // verify required parameter 'categoryId' is not null or undefined
+            if (categoryId === null || categoryId === undefined) {
+                throw new RequiredError('categoryId','Required parameter categoryId was null or undefined when calling budgetsCategoryTransactionList.');
+            }
+            const localVarPath = `/budgets/{budget_id}/category/{category_id}/transaction/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
+                .replace(`{${"category_id"}}`, encodeURIComponent(String(categoryId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Category} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryUpdate(budgetId: string, id: string, data: Category, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsCategoryUpdate.');
+            }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsCategoryUpdate.');
+            }
+            // verify required parameter 'data' is not null or undefined
+            if (data === null || data === undefined) {
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsCategoryUpdate.');
+            }
+            const localVarPath = `/budgets/{budget_id}/category/{id}/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"Category" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {CategoryGroup} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategorygroupsCreate(budgetId: string, data: CategoryGroup, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsCategorygroupsCreate.');
+            }
+            // verify required parameter 'data' is not null or undefined
+            if (data === null || data === undefined) {
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsCategorygroupsCreate.');
+            }
+            const localVarPath = `/budgets/{budget_id}/categorygroups/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"CategoryGroup" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategorygroupsList(budgetId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsCategorygroupsList.');
+            }
+            const localVarPath = `/budgets/{budget_id}/categorygroups/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {CategoryGroup} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategorygroupsPartialUpdate(budgetId: string, id: string, data: CategoryGroup, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsCategorygroupsPartialUpdate.');
+            }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsCategorygroupsPartialUpdate.');
+            }
+            // verify required parameter 'data' is not null or undefined
+            if (data === null || data === undefined) {
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsCategorygroupsPartialUpdate.');
+            }
+            const localVarPath = `/budgets/{budget_id}/categorygroups/{id}/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"CategoryGroup" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategorygroupsRead(budgetId: string, id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsCategorygroupsRead.');
+            }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsCategorygroupsRead.');
+            }
+            const localVarPath = `/budgets/{budget_id}/categorygroups/{id}/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {CategoryGroup} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategorygroupsUpdate(budgetId: string, id: string, data: CategoryGroup, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsCategorygroupsUpdate.');
+            }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsCategorygroupsUpdate.');
+            }
+            // verify required parameter 'data' is not null or undefined
+            if (data === null || data === undefined) {
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsCategorygroupsUpdate.');
+            }
+            const localVarPath = `/budgets/{budget_id}/categorygroups/{id}/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"CategoryGroup" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * CategoriesApi - functional programming interface
+ * @export
+ */
+export const CategoriesApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {Category} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryCreate(budgetId: string, data: Category, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Category> {
+            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).budgetsCategoryCreate(budgetId, data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryList(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Category>> {
+            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).budgetsCategoryList(budgetId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Category} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryPartialUpdate(budgetId: string, id: string, data: Category, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Category> {
+            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).budgetsCategoryPartialUpdate(budgetId, id, data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Category> {
+            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).budgetsCategoryRead(budgetId, id, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} categoryId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Transaction>> {
+            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).budgetsCategoryTransactionList(budgetId, categoryId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Category} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryUpdate(budgetId: string, id: string, data: Category, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Category> {
+            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).budgetsCategoryUpdate(budgetId, id, data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {CategoryGroup} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategorygroupsCreate(budgetId: string, data: CategoryGroup, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CategoryGroup> {
+            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).budgetsCategorygroupsCreate(budgetId, data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategorygroupsList(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<CategoryGroup>> {
+            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).budgetsCategorygroupsList(budgetId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {CategoryGroup} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategorygroupsPartialUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CategoryGroup> {
+            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).budgetsCategorygroupsPartialUpdate(budgetId, id, data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategorygroupsRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CategoryGroup> {
+            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).budgetsCategorygroupsRead(budgetId, id, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {CategoryGroup} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategorygroupsUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CategoryGroup> {
+            const localVarFetchArgs = CategoriesApiFetchParamCreator(configuration).budgetsCategorygroupsUpdate(budgetId, id, data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * CategoriesApi - factory interface
+ * @export
+ */
+export const CategoriesApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {Category} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryCreate(budgetId: string, data: Category, options?: any) {
+            return CategoriesApiFp(configuration).budgetsCategoryCreate(budgetId, data, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryList(budgetId: string, options?: any) {
+            return CategoriesApiFp(configuration).budgetsCategoryList(budgetId, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Category} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryPartialUpdate(budgetId: string, id: string, data: Category, options?: any) {
+            return CategoriesApiFp(configuration).budgetsCategoryPartialUpdate(budgetId, id, data, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryRead(budgetId: string, id: string, options?: any) {
+            return CategoriesApiFp(configuration).budgetsCategoryRead(budgetId, id, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} categoryId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any) {
+            return CategoriesApiFp(configuration).budgetsCategoryTransactionList(budgetId, categoryId, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Category} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryUpdate(budgetId: string, id: string, data: Category, options?: any) {
+            return CategoriesApiFp(configuration).budgetsCategoryUpdate(budgetId, id, data, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {CategoryGroup} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategorygroupsCreate(budgetId: string, data: CategoryGroup, options?: any) {
+            return CategoriesApiFp(configuration).budgetsCategorygroupsCreate(budgetId, data, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategorygroupsList(budgetId: string, options?: any) {
+            return CategoriesApiFp(configuration).budgetsCategorygroupsList(budgetId, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {CategoryGroup} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategorygroupsPartialUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any) {
+            return CategoriesApiFp(configuration).budgetsCategorygroupsPartialUpdate(budgetId, id, data, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategorygroupsRead(budgetId: string, id: string, options?: any) {
+            return CategoriesApiFp(configuration).budgetsCategorygroupsRead(budgetId, id, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {CategoryGroup} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategorygroupsUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any) {
+            return CategoriesApiFp(configuration).budgetsCategorygroupsUpdate(budgetId, id, data, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * CategoriesApi - object-oriented interface
+ * @export
+ * @class CategoriesApi
+ * @extends {BaseAPI}
+ */
+export class CategoriesApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {Category} data 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    public budgetsCategoryCreate(budgetId: string, data: Category, options?: any) {
+        return CategoriesApiFp(this.configuration).budgetsCategoryCreate(budgetId, data, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    public budgetsCategoryList(budgetId: string, options?: any) {
+        return CategoriesApiFp(this.configuration).budgetsCategoryList(budgetId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {string} id 
+     * @param {Category} data 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    public budgetsCategoryPartialUpdate(budgetId: string, id: string, data: Category, options?: any) {
+        return CategoriesApiFp(this.configuration).budgetsCategoryPartialUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    public budgetsCategoryRead(budgetId: string, id: string, options?: any) {
+        return CategoriesApiFp(this.configuration).budgetsCategoryRead(budgetId, id, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {string} categoryId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    public budgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any) {
+        return CategoriesApiFp(this.configuration).budgetsCategoryTransactionList(budgetId, categoryId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {string} id 
+     * @param {Category} data 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    public budgetsCategoryUpdate(budgetId: string, id: string, data: Category, options?: any) {
+        return CategoriesApiFp(this.configuration).budgetsCategoryUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {CategoryGroup} data 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    public budgetsCategorygroupsCreate(budgetId: string, data: CategoryGroup, options?: any) {
+        return CategoriesApiFp(this.configuration).budgetsCategorygroupsCreate(budgetId, data, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    public budgetsCategorygroupsList(budgetId: string, options?: any) {
+        return CategoriesApiFp(this.configuration).budgetsCategorygroupsList(budgetId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {string} id 
+     * @param {CategoryGroup} data 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    public budgetsCategorygroupsPartialUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any) {
+        return CategoriesApiFp(this.configuration).budgetsCategorygroupsPartialUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    public budgetsCategorygroupsRead(budgetId: string, id: string, options?: any) {
+        return CategoriesApiFp(this.configuration).budgetsCategorygroupsRead(budgetId, id, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {string} id 
+     * @param {CategoryGroup} data 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApi
+     */
+    public budgetsCategorygroupsUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any) {
+        return CategoriesApiFp(this.configuration).budgetsCategorygroupsUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * EnvelopesApi - fetch parameter creator
+ * @export
+ */
+export const EnvelopesApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} categoryId 
          * @param {string} month 
          * @param {string} year 
          * @param {Envelope} data 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsMonthsCategoryPartialUpdate(budgetId: string, categoryId: string, month: string, year: string, data: Envelope, options: any = {}): FetchArgs {
+        budgetsMonthsCategoryPartialUpdate(budgetId: string, categoryId: string, month: string, year: string, data: Envelope, options: any = {}): FetchArgs {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsMonthsCategoryPartialUpdate.');
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsMonthsCategoryPartialUpdate.');
             }
             // verify required parameter 'categoryId' is not null or undefined
             if (categoryId === null || categoryId === undefined) {
-                throw new RequiredError('categoryId','Required parameter categoryId was null or undefined when calling v1BudgetsMonthsCategoryPartialUpdate.');
+                throw new RequiredError('categoryId','Required parameter categoryId was null or undefined when calling budgetsMonthsCategoryPartialUpdate.');
             }
             // verify required parameter 'month' is not null or undefined
             if (month === null || month === undefined) {
-                throw new RequiredError('month','Required parameter month was null or undefined when calling v1BudgetsMonthsCategoryPartialUpdate.');
+                throw new RequiredError('month','Required parameter month was null or undefined when calling budgetsMonthsCategoryPartialUpdate.');
             }
             // verify required parameter 'year' is not null or undefined
             if (year === null || year === undefined) {
-                throw new RequiredError('year','Required parameter year was null or undefined when calling v1BudgetsMonthsCategoryPartialUpdate.');
+                throw new RequiredError('year','Required parameter year was null or undefined when calling budgetsMonthsCategoryPartialUpdate.');
             }
             // verify required parameter 'data' is not null or undefined
             if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsMonthsCategoryPartialUpdate.');
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsMonthsCategoryPartialUpdate.');
             }
-            const localVarPath = `/v1/budgets/{budget_id}/months/{year}-{month}/category/{category_id}/`
+            const localVarPath = `/budgets/{budget_id}/months/{year}-{month}/category/{category_id}/`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
                 .replace(`{${"category_id"}}`, encodeURIComponent(String(categoryId)))
                 .replace(`{${"month"}}`, encodeURIComponent(String(month)))
@@ -1439,24 +2461,24 @@ export const V1ApiFetchParamCreator = function (configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsMonthsCategoryRead(budgetId: string, categoryId: string, month: string, year: string, options: any = {}): FetchArgs {
+        budgetsMonthsCategoryRead(budgetId: string, categoryId: string, month: string, year: string, options: any = {}): FetchArgs {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsMonthsCategoryRead.');
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsMonthsCategoryRead.');
             }
             // verify required parameter 'categoryId' is not null or undefined
             if (categoryId === null || categoryId === undefined) {
-                throw new RequiredError('categoryId','Required parameter categoryId was null or undefined when calling v1BudgetsMonthsCategoryRead.');
+                throw new RequiredError('categoryId','Required parameter categoryId was null or undefined when calling budgetsMonthsCategoryRead.');
             }
             // verify required parameter 'month' is not null or undefined
             if (month === null || month === undefined) {
-                throw new RequiredError('month','Required parameter month was null or undefined when calling v1BudgetsMonthsCategoryRead.');
+                throw new RequiredError('month','Required parameter month was null or undefined when calling budgetsMonthsCategoryRead.');
             }
             // verify required parameter 'year' is not null or undefined
             if (year === null || year === undefined) {
-                throw new RequiredError('year','Required parameter year was null or undefined when calling v1BudgetsMonthsCategoryRead.');
+                throw new RequiredError('year','Required parameter year was null or undefined when calling budgetsMonthsCategoryRead.');
             }
-            const localVarPath = `/v1/budgets/{budget_id}/months/{year}-{month}/category/{category_id}/`
+            const localVarPath = `/budgets/{budget_id}/months/{year}-{month}/category/{category_id}/`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
                 .replace(`{${"category_id"}}`, encodeURIComponent(String(categoryId)))
                 .replace(`{${"month"}}`, encodeURIComponent(String(month)))
@@ -1482,18 +2504,151 @@ export const V1ApiFetchParamCreator = function (configuration?: Configuration) {
                 options: localVarRequestOptions,
             };
         },
+    }
+};
+
+/**
+ * EnvelopesApi - functional programming interface
+ * @export
+ */
+export const EnvelopesApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} categoryId 
+         * @param {string} month 
+         * @param {string} year 
+         * @param {Envelope} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsMonthsCategoryPartialUpdate(budgetId: string, categoryId: string, month: string, year: string, data: Envelope, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Envelope> {
+            const localVarFetchArgs = EnvelopesApiFetchParamCreator(configuration).budgetsMonthsCategoryPartialUpdate(budgetId, categoryId, month, year, data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} categoryId 
+         * @param {string} month 
+         * @param {string} year 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsMonthsCategoryRead(budgetId: string, categoryId: string, month: string, year: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Envelope> {
+            const localVarFetchArgs = EnvelopesApiFetchParamCreator(configuration).budgetsMonthsCategoryRead(budgetId, categoryId, month, year, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * EnvelopesApi - factory interface
+ * @export
+ */
+export const EnvelopesApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} categoryId 
+         * @param {string} month 
+         * @param {string} year 
+         * @param {Envelope} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsMonthsCategoryPartialUpdate(budgetId: string, categoryId: string, month: string, year: string, data: Envelope, options?: any) {
+            return EnvelopesApiFp(configuration).budgetsMonthsCategoryPartialUpdate(budgetId, categoryId, month, year, data, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} categoryId 
+         * @param {string} month 
+         * @param {string} year 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsMonthsCategoryRead(budgetId: string, categoryId: string, month: string, year: string, options?: any) {
+            return EnvelopesApiFp(configuration).budgetsMonthsCategoryRead(budgetId, categoryId, month, year, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * EnvelopesApi - object-oriented interface
+ * @export
+ * @class EnvelopesApi
+ * @extends {BaseAPI}
+ */
+export class EnvelopesApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {string} categoryId 
+     * @param {string} month 
+     * @param {string} year 
+     * @param {Envelope} data 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnvelopesApi
+     */
+    public budgetsMonthsCategoryPartialUpdate(budgetId: string, categoryId: string, month: string, year: string, data: Envelope, options?: any) {
+        return EnvelopesApiFp(this.configuration).budgetsMonthsCategoryPartialUpdate(budgetId, categoryId, month, year, data, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {string} categoryId 
+     * @param {string} month 
+     * @param {string} year 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EnvelopesApi
+     */
+    public budgetsMonthsCategoryRead(budgetId: string, categoryId: string, month: string, year: string, options?: any) {
+        return EnvelopesApiFp(this.configuration).budgetsMonthsCategoryRead(budgetId, categoryId, month, year, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * MonthsApi - fetch parameter creator
+ * @export
+ */
+export const MonthsApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
         /**
          * 
          * @param {string} budgetId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsMonthsList(budgetId: string, options: any = {}): FetchArgs {
+        budgetsMonthsList(budgetId: string, options: any = {}): FetchArgs {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsMonthsList.');
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsMonthsList.');
             }
-            const localVarPath = `/v1/budgets/{budget_id}/months/`
+            const localVarPath = `/budgets/{budget_id}/months/`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -1524,20 +2679,20 @@ export const V1ApiFetchParamCreator = function (configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsMonthsRead(budgetId: string, month: string, year: string, options: any = {}): FetchArgs {
+        budgetsMonthsRead(budgetId: string, month: string, year: string, options: any = {}): FetchArgs {
             // verify required parameter 'budgetId' is not null or undefined
             if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsMonthsRead.');
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsMonthsRead.');
             }
             // verify required parameter 'month' is not null or undefined
             if (month === null || month === undefined) {
-                throw new RequiredError('month','Required parameter month was null or undefined when calling v1BudgetsMonthsRead.');
+                throw new RequiredError('month','Required parameter month was null or undefined when calling budgetsMonthsRead.');
             }
             // verify required parameter 'year' is not null or undefined
             if (year === null || year === undefined) {
-                throw new RequiredError('year','Required parameter year was null or undefined when calling v1BudgetsMonthsRead.');
+                throw new RequiredError('year','Required parameter year was null or undefined when calling budgetsMonthsRead.');
             }
-            const localVarPath = `/v1/budgets/{budget_id}/months/{year}-{month}/`
+            const localVarPath = `/budgets/{budget_id}/months/{year}-{month}/`
                 .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
                 .replace(`{${"month"}}`, encodeURIComponent(String(month)))
                 .replace(`{${"year"}}`, encodeURIComponent(String(year)));
@@ -1562,1003 +2717,23 @@ export const V1ApiFetchParamCreator = function (configuration?: Configuration) {
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * 
-         * @param {string} id 
-         * @param {Budget} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPartialUpdate(id: string, data: Budget, options: any = {}): FetchArgs {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsPartialUpdate.');
-            }
-            // verify required parameter 'data' is not null or undefined
-            if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsPartialUpdate.');
-            }
-            const localVarPath = `/v1/budgets/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"Budget" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {Payee} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPayeeCreate(budgetId: string, data: Payee, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsPayeeCreate.');
-            }
-            // verify required parameter 'data' is not null or undefined
-            if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsPayeeCreate.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/payee/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"Payee" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPayeeList(budgetId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsPayeeList.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/payee/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Payee} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPayeePartialUpdate(budgetId: string, id: string, data: Payee, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsPayeePartialUpdate.');
-            }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsPayeePartialUpdate.');
-            }
-            // verify required parameter 'data' is not null or undefined
-            if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsPayeePartialUpdate.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/payee/{id}/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"Payee" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPayeeRead(budgetId: string, id: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsPayeeRead.');
-            }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsPayeeRead.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/payee/{id}/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Payee} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPayeeUpdate(budgetId: string, id: string, data: Payee, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsPayeeUpdate.');
-            }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsPayeeUpdate.');
-            }
-            // verify required parameter 'data' is not null or undefined
-            if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsPayeeUpdate.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/payee/{id}/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"Payee" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsRead(id: string, options: any = {}): FetchArgs {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsRead.');
-            }
-            const localVarPath = `/v1/budgets/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {Transaction} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsTransactionCreate(budgetId: string, data: Transaction, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsTransactionCreate.');
-            }
-            // verify required parameter 'data' is not null or undefined
-            if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsTransactionCreate.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/transaction/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"Transaction" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsTransactionList(budgetId: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsTransactionList.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/transaction/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Transaction} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsTransactionPartialUpdate(budgetId: string, id: string, data: Transaction, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsTransactionPartialUpdate.');
-            }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsTransactionPartialUpdate.');
-            }
-            // verify required parameter 'data' is not null or undefined
-            if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsTransactionPartialUpdate.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/transaction/{id}/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"Transaction" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsTransactionRead(budgetId: string, id: string, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsTransactionRead.');
-            }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsTransactionRead.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/transaction/{id}/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Transaction} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsTransactionUpdate(budgetId: string, id: string, data: Transaction, options: any = {}): FetchArgs {
-            // verify required parameter 'budgetId' is not null or undefined
-            if (budgetId === null || budgetId === undefined) {
-                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling v1BudgetsTransactionUpdate.');
-            }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsTransactionUpdate.');
-            }
-            // verify required parameter 'data' is not null or undefined
-            if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsTransactionUpdate.');
-            }
-            const localVarPath = `/v1/budgets/{budget_id}/transaction/{id}/`
-                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"Transaction" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {Budget} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsUpdate(id: string, data: Budget, options: any = {}): FetchArgs {
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id','Required parameter id was null or undefined when calling v1BudgetsUpdate.');
-            }
-            // verify required parameter 'data' is not null or undefined
-            if (data === null || data === undefined) {
-                throw new RequiredError('data','Required parameter data was null or undefined when calling v1BudgetsUpdate.');
-            }
-            const localVarPath = `/v1/budgets/{id}/`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            const needsSerialization = (<any>"Budget" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1List(options: any = {}): FetchArgs {
-            const localVarPath = `/v1/`;
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Basic required
-            // http basic authentication required
-            if (configuration && (configuration.username || configuration.password)) {
-                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
 /**
- * V1Api - functional programming interface
+ * MonthsApi - functional programming interface
  * @export
  */
-export const V1ApiFp = function(configuration?: Configuration) {
+export const MonthsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
          * @param {string} budgetId 
-         * @param {Account} data 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsAccountCreate(budgetId: string, data: Account, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Account> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsAccountCreate(budgetId, data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsAccountList(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Account>> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsAccountList(budgetId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Account} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsAccountPartialUpdate(budgetId: string, id: string, data: Account, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Account> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsAccountPartialUpdate(budgetId, id, data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsAccountRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Account> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsAccountRead(budgetId, id, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} accountId 
-         * @param {string} budgetId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsAccountTransactionList(accountId: string, budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Transaction>> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsAccountTransactionList(accountId, budgetId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {Category} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategoryCreate(budgetId: string, data: Category, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Category> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsCategoryCreate(budgetId, data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategoryList(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Category>> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsCategoryList(budgetId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Category} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategoryPartialUpdate(budgetId: string, id: string, data: Category, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Category> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsCategoryPartialUpdate(budgetId, id, data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategoryRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Category> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsCategoryRead(budgetId, id, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} categoryId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Transaction>> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsCategoryTransactionList(budgetId, categoryId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Category} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategoryUpdate(budgetId: string, id: string, data: Category, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Category> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsCategoryUpdate(budgetId, id, data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {CategoryGroup} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategorygroupCreate(budgetId: string, data: CategoryGroup, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CategoryGroup> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsCategorygroupCreate(budgetId, data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategorygroupList(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<CategoryGroup>> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsCategorygroupList(budgetId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {CategoryGroup} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategorygroupPartialUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CategoryGroup> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsCategorygroupPartialUpdate(budgetId, id, data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategorygroupRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CategoryGroup> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsCategorygroupRead(budgetId, id, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {CategoryGroup} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategorygroupUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CategoryGroup> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsCategorygroupUpdate(budgetId, id, data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {Budget} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCreate(data: Budget, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Budget> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsCreate(data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsDelete(id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsDelete(id, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response;
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsList(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Budget>> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsList(options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} categoryId 
-         * @param {string} month 
-         * @param {string} year 
-         * @param {Envelope} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsMonthsCategoryPartialUpdate(budgetId: string, categoryId: string, month: string, year: string, data: Envelope, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Envelope> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsMonthsCategoryPartialUpdate(budgetId, categoryId, month, year, data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} categoryId 
-         * @param {string} month 
-         * @param {string} year 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsMonthsCategoryRead(budgetId: string, categoryId: string, month: string, year: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Envelope> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsMonthsCategoryRead(budgetId, categoryId, month, year, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsMonthsList(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Month>> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsMonthsList(budgetId, options);
+        budgetsMonthsList(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Month>> {
+            const localVarFetchArgs = MonthsApiFetchParamCreator(configuration).budgetsMonthsList(budgetId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -2577,277 +2752,12 @@ export const V1ApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsMonthsRead(budgetId: string, month: string, year: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Month> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsMonthsRead(budgetId, month, year, options);
+        budgetsMonthsRead(budgetId: string, month: string, year: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Month> {
+            const localVarFetchArgs = MonthsApiFetchParamCreator(configuration).budgetsMonthsRead(budgetId, month, year, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {Budget} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPartialUpdate(id: string, data: Budget, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Budget> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsPartialUpdate(id, data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {Payee} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPayeeCreate(budgetId: string, data: Payee, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Payee> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsPayeeCreate(budgetId, data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPayeeList(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Payee>> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsPayeeList(budgetId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Payee} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPayeePartialUpdate(budgetId: string, id: string, data: Payee, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Payee> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsPayeePartialUpdate(budgetId, id, data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPayeeRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Payee> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsPayeeRead(budgetId, id, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Payee} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPayeeUpdate(budgetId: string, id: string, data: Payee, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Payee> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsPayeeUpdate(budgetId, id, data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsRead(id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Budget> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsRead(id, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {Transaction} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsTransactionCreate(budgetId: string, data: Transaction, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Transaction> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsTransactionCreate(budgetId, data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsTransactionList(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Transaction>> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsTransactionList(budgetId, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Transaction} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsTransactionPartialUpdate(budgetId: string, id: string, data: Transaction, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Transaction> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsTransactionPartialUpdate(budgetId, id, data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsTransactionRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Transaction> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsTransactionRead(budgetId, id, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Transaction} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsTransactionUpdate(budgetId: string, id: string, data: Transaction, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Transaction> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsTransactionUpdate(budgetId, id, data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {Budget} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsUpdate(id: string, data: Budget, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Budget> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1BudgetsUpdate(id, data, options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1List(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = V1ApiFetchParamCreator(configuration).v1List(options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response;
                     } else {
                         throw response;
                     }
@@ -2858,232 +2768,19 @@ export const V1ApiFp = function(configuration?: Configuration) {
 };
 
 /**
- * V1Api - factory interface
+ * MonthsApi - factory interface
  * @export
  */
-export const V1ApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+export const MonthsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
     return {
         /**
          * 
          * @param {string} budgetId 
-         * @param {Account} data 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsAccountCreate(budgetId: string, data: Account, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsAccountCreate(budgetId, data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsAccountList(budgetId: string, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsAccountList(budgetId, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Account} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsAccountPartialUpdate(budgetId: string, id: string, data: Account, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsAccountPartialUpdate(budgetId, id, data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsAccountRead(budgetId: string, id: string, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsAccountRead(budgetId, id, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} accountId 
-         * @param {string} budgetId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsAccountTransactionList(accountId: string, budgetId: string, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsAccountTransactionList(accountId, budgetId, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {Category} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategoryCreate(budgetId: string, data: Category, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsCategoryCreate(budgetId, data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategoryList(budgetId: string, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsCategoryList(budgetId, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Category} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategoryPartialUpdate(budgetId: string, id: string, data: Category, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsCategoryPartialUpdate(budgetId, id, data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategoryRead(budgetId: string, id: string, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsCategoryRead(budgetId, id, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} categoryId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsCategoryTransactionList(budgetId, categoryId, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Category} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategoryUpdate(budgetId: string, id: string, data: Category, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsCategoryUpdate(budgetId, id, data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {CategoryGroup} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategorygroupCreate(budgetId: string, data: CategoryGroup, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsCategorygroupCreate(budgetId, data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategorygroupList(budgetId: string, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsCategorygroupList(budgetId, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {CategoryGroup} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategorygroupPartialUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsCategorygroupPartialUpdate(budgetId, id, data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategorygroupRead(budgetId: string, id: string, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsCategorygroupRead(budgetId, id, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {CategoryGroup} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCategorygroupUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsCategorygroupUpdate(budgetId, id, data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {Budget} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsCreate(data: Budget, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsCreate(data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsDelete(id: string, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsDelete(id, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsList(options?: any) {
-            return V1ApiFp(configuration).v1BudgetsList(options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} categoryId 
-         * @param {string} month 
-         * @param {string} year 
-         * @param {Envelope} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsMonthsCategoryPartialUpdate(budgetId: string, categoryId: string, month: string, year: string, data: Envelope, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsMonthsCategoryPartialUpdate(budgetId, categoryId, month, year, data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} categoryId 
-         * @param {string} month 
-         * @param {string} year 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsMonthsCategoryRead(budgetId: string, categoryId: string, month: string, year: string, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsMonthsCategoryRead(budgetId, categoryId, month, year, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsMonthsList(budgetId: string, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsMonthsList(budgetId, options)(fetch, basePath);
+        budgetsMonthsList(budgetId: string, options?: any) {
+            return MonthsApiFp(configuration).budgetsMonthsList(budgetId, options)(fetch, basePath);
         },
         /**
          * 
@@ -3093,168 +2790,451 @@ export const V1ApiFactory = function (configuration?: Configuration, fetch?: Fet
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        v1BudgetsMonthsRead(budgetId: string, month: string, year: string, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsMonthsRead(budgetId, month, year, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {Budget} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPartialUpdate(id: string, data: Budget, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsPartialUpdate(id, data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {Payee} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPayeeCreate(budgetId: string, data: Payee, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsPayeeCreate(budgetId, data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPayeeList(budgetId: string, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsPayeeList(budgetId, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Payee} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPayeePartialUpdate(budgetId: string, id: string, data: Payee, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsPayeePartialUpdate(budgetId, id, data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPayeeRead(budgetId: string, id: string, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsPayeeRead(budgetId, id, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Payee} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsPayeeUpdate(budgetId: string, id: string, data: Payee, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsPayeeUpdate(budgetId, id, data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsRead(id: string, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsRead(id, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {Transaction} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsTransactionCreate(budgetId: string, data: Transaction, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsTransactionCreate(budgetId, data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsTransactionList(budgetId: string, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsTransactionList(budgetId, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Transaction} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsTransactionPartialUpdate(budgetId: string, id: string, data: Transaction, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsTransactionPartialUpdate(budgetId, id, data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsTransactionRead(budgetId: string, id: string, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsTransactionRead(budgetId, id, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} budgetId 
-         * @param {string} id 
-         * @param {Transaction} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsTransactionUpdate(budgetId: string, id: string, data: Transaction, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsTransactionUpdate(budgetId, id, data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {string} id 
-         * @param {Budget} data 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1BudgetsUpdate(id: string, data: Budget, options?: any) {
-            return V1ApiFp(configuration).v1BudgetsUpdate(id, data, options)(fetch, basePath);
-        },
-        /**
-         * 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        v1List(options?: any) {
-            return V1ApiFp(configuration).v1List(options)(fetch, basePath);
+        budgetsMonthsRead(budgetId: string, month: string, year: string, options?: any) {
+            return MonthsApiFp(configuration).budgetsMonthsRead(budgetId, month, year, options)(fetch, basePath);
         },
     };
 };
 
 /**
- * V1Api - object-oriented interface
+ * MonthsApi - object-oriented interface
  * @export
- * @class V1Api
+ * @class MonthsApi
  * @extends {BaseAPI}
  */
-export class V1Api extends BaseAPI {
+export class MonthsApi extends BaseAPI {
     /**
      * 
      * @param {string} budgetId 
-     * @param {Account} data 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
+     * @memberof MonthsApi
      */
-    public v1BudgetsAccountCreate(budgetId: string, data: Account, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsAccountCreate(budgetId, data, options)(this.fetch, this.basePath);
+    public budgetsMonthsList(budgetId: string, options?: any) {
+        return MonthsApiFp(this.configuration).budgetsMonthsList(budgetId, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {string} month 
+     * @param {string} year 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MonthsApi
+     */
+    public budgetsMonthsRead(budgetId: string, month: string, year: string, options?: any) {
+        return MonthsApiFp(this.configuration).budgetsMonthsRead(budgetId, month, year, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * PayeesApi - fetch parameter creator
+ * @export
+ */
+export const PayeesApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {Payee} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPayeeCreate(budgetId: string, data: Payee, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsPayeeCreate.');
+            }
+            // verify required parameter 'data' is not null or undefined
+            if (data === null || data === undefined) {
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsPayeeCreate.');
+            }
+            const localVarPath = `/budgets/{budget_id}/payee/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"Payee" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPayeeList(budgetId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsPayeeList.');
+            }
+            const localVarPath = `/budgets/{budget_id}/payee/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Payee} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPayeePartialUpdate(budgetId: string, id: string, data: Payee, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsPayeePartialUpdate.');
+            }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsPayeePartialUpdate.');
+            }
+            // verify required parameter 'data' is not null or undefined
+            if (data === null || data === undefined) {
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsPayeePartialUpdate.');
+            }
+            const localVarPath = `/budgets/{budget_id}/payee/{id}/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"Payee" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPayeeRead(budgetId: string, id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsPayeeRead.');
+            }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsPayeeRead.');
+            }
+            const localVarPath = `/budgets/{budget_id}/payee/{id}/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Payee} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPayeeUpdate(budgetId: string, id: string, data: Payee, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsPayeeUpdate.');
+            }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsPayeeUpdate.');
+            }
+            // verify required parameter 'data' is not null or undefined
+            if (data === null || data === undefined) {
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsPayeeUpdate.');
+            }
+            const localVarPath = `/budgets/{budget_id}/payee/{id}/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"Payee" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * PayeesApi - functional programming interface
+ * @export
+ */
+export const PayeesApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {Payee} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPayeeCreate(budgetId: string, data: Payee, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Payee> {
+            const localVarFetchArgs = PayeesApiFetchParamCreator(configuration).budgetsPayeeCreate(budgetId, data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPayeeList(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Payee>> {
+            const localVarFetchArgs = PayeesApiFetchParamCreator(configuration).budgetsPayeeList(budgetId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Payee} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPayeePartialUpdate(budgetId: string, id: string, data: Payee, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Payee> {
+            const localVarFetchArgs = PayeesApiFetchParamCreator(configuration).budgetsPayeePartialUpdate(budgetId, id, data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPayeeRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Payee> {
+            const localVarFetchArgs = PayeesApiFetchParamCreator(configuration).budgetsPayeeRead(budgetId, id, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Payee} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPayeeUpdate(budgetId: string, id: string, data: Payee, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Payee> {
+            const localVarFetchArgs = PayeesApiFetchParamCreator(configuration).budgetsPayeeUpdate(budgetId, id, data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * PayeesApi - factory interface
+ * @export
+ */
+export const PayeesApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {Payee} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPayeeCreate(budgetId: string, data: Payee, options?: any) {
+            return PayeesApiFp(configuration).budgetsPayeeCreate(budgetId, data, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPayeeList(budgetId: string, options?: any) {
+            return PayeesApiFp(configuration).budgetsPayeeList(budgetId, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Payee} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPayeePartialUpdate(budgetId: string, id: string, data: Payee, options?: any) {
+            return PayeesApiFp(configuration).budgetsPayeePartialUpdate(budgetId, id, data, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPayeeRead(budgetId: string, id: string, options?: any) {
+            return PayeesApiFp(configuration).budgetsPayeeRead(budgetId, id, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Payee} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsPayeeUpdate(budgetId: string, id: string, data: Payee, options?: any) {
+            return PayeesApiFp(configuration).budgetsPayeeUpdate(budgetId, id, data, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * PayeesApi - object-oriented interface
+ * @export
+ * @class PayeesApi
+ * @extends {BaseAPI}
+ */
+export class PayeesApi extends BaseAPI {
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {Payee} data 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PayeesApi
+     */
+    public budgetsPayeeCreate(budgetId: string, data: Payee, options?: any) {
+        return PayeesApiFp(this.configuration).budgetsPayeeCreate(budgetId, data, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -3262,23 +3242,23 @@ export class V1Api extends BaseAPI {
      * @param {string} budgetId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
+     * @memberof PayeesApi
      */
-    public v1BudgetsAccountList(budgetId: string, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsAccountList(budgetId, options)(this.fetch, this.basePath);
+    public budgetsPayeeList(budgetId: string, options?: any) {
+        return PayeesApiFp(this.configuration).budgetsPayeeList(budgetId, options)(this.fetch, this.basePath);
     }
 
     /**
      * 
      * @param {string} budgetId 
      * @param {string} id 
-     * @param {Account} data 
+     * @param {Payee} data 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
+     * @memberof PayeesApi
      */
-    public v1BudgetsAccountPartialUpdate(budgetId: string, id: string, data: Account, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsAccountPartialUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
+    public budgetsPayeePartialUpdate(budgetId: string, id: string, data: Payee, options?: any) {
+        return PayeesApiFp(this.configuration).budgetsPayeePartialUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -3287,70 +3267,571 @@ export class V1Api extends BaseAPI {
      * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
+     * @memberof PayeesApi
      */
-    public v1BudgetsAccountRead(budgetId: string, id: string, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsAccountRead(budgetId, id, options)(this.fetch, this.basePath);
+    public budgetsPayeeRead(budgetId: string, id: string, options?: any) {
+        return PayeesApiFp(this.configuration).budgetsPayeeRead(budgetId, id, options)(this.fetch, this.basePath);
     }
 
+    /**
+     * 
+     * @param {string} budgetId 
+     * @param {string} id 
+     * @param {Payee} data 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PayeesApi
+     */
+    public budgetsPayeeUpdate(budgetId: string, id: string, data: Payee, options?: any) {
+        return PayeesApiFp(this.configuration).budgetsPayeeUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * TransactionsApi - fetch parameter creator
+ * @export
+ */
+export const TransactionsApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} accountId 
+         * @param {string} budgetId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsAccountTransactionList(accountId: string, budgetId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'accountId' is not null or undefined
+            if (accountId === null || accountId === undefined) {
+                throw new RequiredError('accountId','Required parameter accountId was null or undefined when calling budgetsAccountTransactionList.');
+            }
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsAccountTransactionList.');
+            }
+            const localVarPath = `/budgets/{budget_id}/account/{account_id}/transaction/`
+                .replace(`{${"account_id"}}`, encodeURIComponent(String(accountId)))
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} categoryId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryTransactionList(budgetId: string, categoryId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsCategoryTransactionList.');
+            }
+            // verify required parameter 'categoryId' is not null or undefined
+            if (categoryId === null || categoryId === undefined) {
+                throw new RequiredError('categoryId','Required parameter categoryId was null or undefined when calling budgetsCategoryTransactionList.');
+            }
+            const localVarPath = `/budgets/{budget_id}/category/{category_id}/transaction/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
+                .replace(`{${"category_id"}}`, encodeURIComponent(String(categoryId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {Transaction} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsTransactionCreate(budgetId: string, data: Transaction, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsTransactionCreate.');
+            }
+            // verify required parameter 'data' is not null or undefined
+            if (data === null || data === undefined) {
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsTransactionCreate.');
+            }
+            const localVarPath = `/budgets/{budget_id}/transaction/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"Transaction" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsTransactionList(budgetId: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsTransactionList.');
+            }
+            const localVarPath = `/budgets/{budget_id}/transaction/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Transaction} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsTransactionPartialUpdate(budgetId: string, id: string, data: Transaction, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsTransactionPartialUpdate.');
+            }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsTransactionPartialUpdate.');
+            }
+            // verify required parameter 'data' is not null or undefined
+            if (data === null || data === undefined) {
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsTransactionPartialUpdate.');
+            }
+            const localVarPath = `/budgets/{budget_id}/transaction/{id}/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PATCH' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"Transaction" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsTransactionRead(budgetId: string, id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsTransactionRead.');
+            }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsTransactionRead.');
+            }
+            const localVarPath = `/budgets/{budget_id}/transaction/{id}/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Transaction} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsTransactionUpdate(budgetId: string, id: string, data: Transaction, options: any = {}): FetchArgs {
+            // verify required parameter 'budgetId' is not null or undefined
+            if (budgetId === null || budgetId === undefined) {
+                throw new RequiredError('budgetId','Required parameter budgetId was null or undefined when calling budgetsTransactionUpdate.');
+            }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id','Required parameter id was null or undefined when calling budgetsTransactionUpdate.');
+            }
+            // verify required parameter 'data' is not null or undefined
+            if (data === null || data === undefined) {
+                throw new RequiredError('data','Required parameter data was null or undefined when calling budgetsTransactionUpdate.');
+            }
+            const localVarPath = `/budgets/{budget_id}/transaction/{id}/`
+                .replace(`{${"budget_id"}}`, encodeURIComponent(String(budgetId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Basic required
+            // http basic authentication required
+            if (configuration && (configuration.username || configuration.password)) {
+                localVarHeaderParameter["Authorization"] = "Basic " + btoa(configuration.username + ":" + configuration.password);
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"Transaction" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(data || {}) : (data || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * TransactionsApi - functional programming interface
+ * @export
+ */
+export const TransactionsApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {string} accountId 
+         * @param {string} budgetId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsAccountTransactionList(accountId: string, budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Transaction>> {
+            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).budgetsAccountTransactionList(accountId, budgetId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} categoryId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Transaction>> {
+            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).budgetsCategoryTransactionList(budgetId, categoryId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {Transaction} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsTransactionCreate(budgetId: string, data: Transaction, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Transaction> {
+            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).budgetsTransactionCreate(budgetId, data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsTransactionList(budgetId: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Array<Transaction>> {
+            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).budgetsTransactionList(budgetId, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Transaction} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsTransactionPartialUpdate(budgetId: string, id: string, data: Transaction, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Transaction> {
+            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).budgetsTransactionPartialUpdate(budgetId, id, data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsTransactionRead(budgetId: string, id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Transaction> {
+            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).budgetsTransactionRead(budgetId, id, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Transaction} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsTransactionUpdate(budgetId: string, id: string, data: Transaction, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Transaction> {
+            const localVarFetchArgs = TransactionsApiFetchParamCreator(configuration).budgetsTransactionUpdate(budgetId, id, data, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * TransactionsApi - factory interface
+ * @export
+ */
+export const TransactionsApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * 
+         * @param {string} accountId 
+         * @param {string} budgetId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsAccountTransactionList(accountId: string, budgetId: string, options?: any) {
+            return TransactionsApiFp(configuration).budgetsAccountTransactionList(accountId, budgetId, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} categoryId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any) {
+            return TransactionsApiFp(configuration).budgetsCategoryTransactionList(budgetId, categoryId, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {Transaction} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsTransactionCreate(budgetId: string, data: Transaction, options?: any) {
+            return TransactionsApiFp(configuration).budgetsTransactionCreate(budgetId, data, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsTransactionList(budgetId: string, options?: any) {
+            return TransactionsApiFp(configuration).budgetsTransactionList(budgetId, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Transaction} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsTransactionPartialUpdate(budgetId: string, id: string, data: Transaction, options?: any) {
+            return TransactionsApiFp(configuration).budgetsTransactionPartialUpdate(budgetId, id, data, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsTransactionRead(budgetId: string, id: string, options?: any) {
+            return TransactionsApiFp(configuration).budgetsTransactionRead(budgetId, id, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @param {string} budgetId 
+         * @param {string} id 
+         * @param {Transaction} data 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        budgetsTransactionUpdate(budgetId: string, id: string, data: Transaction, options?: any) {
+            return TransactionsApiFp(configuration).budgetsTransactionUpdate(budgetId, id, data, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * TransactionsApi - object-oriented interface
+ * @export
+ * @class TransactionsApi
+ * @extends {BaseAPI}
+ */
+export class TransactionsApi extends BaseAPI {
     /**
      * 
      * @param {string} accountId 
      * @param {string} budgetId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
+     * @memberof TransactionsApi
      */
-    public v1BudgetsAccountTransactionList(accountId: string, budgetId: string, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsAccountTransactionList(accountId, budgetId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {Category} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsCategoryCreate(budgetId: string, data: Category, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsCategoryCreate(budgetId, data, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsCategoryList(budgetId: string, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsCategoryList(budgetId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {string} id 
-     * @param {Category} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsCategoryPartialUpdate(budgetId: string, id: string, data: Category, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsCategoryPartialUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsCategoryRead(budgetId: string, id: string, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsCategoryRead(budgetId, id, options)(this.fetch, this.basePath);
+    public budgetsAccountTransactionList(accountId: string, budgetId: string, options?: any) {
+        return TransactionsApiFp(this.configuration).budgetsAccountTransactionList(accountId, budgetId, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -3359,253 +3840,10 @@ export class V1Api extends BaseAPI {
      * @param {string} categoryId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
+     * @memberof TransactionsApi
      */
-    public v1BudgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsCategoryTransactionList(budgetId, categoryId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {string} id 
-     * @param {Category} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsCategoryUpdate(budgetId: string, id: string, data: Category, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsCategoryUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {CategoryGroup} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsCategorygroupCreate(budgetId: string, data: CategoryGroup, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsCategorygroupCreate(budgetId, data, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsCategorygroupList(budgetId: string, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsCategorygroupList(budgetId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {string} id 
-     * @param {CategoryGroup} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsCategorygroupPartialUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsCategorygroupPartialUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsCategorygroupRead(budgetId: string, id: string, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsCategorygroupRead(budgetId, id, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {string} id 
-     * @param {CategoryGroup} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsCategorygroupUpdate(budgetId: string, id: string, data: CategoryGroup, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsCategorygroupUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {Budget} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsCreate(data: Budget, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsCreate(data, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsDelete(id: string, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsDelete(id, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsList(options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsList(options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {string} categoryId 
-     * @param {string} month 
-     * @param {string} year 
-     * @param {Envelope} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsMonthsCategoryPartialUpdate(budgetId: string, categoryId: string, month: string, year: string, data: Envelope, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsMonthsCategoryPartialUpdate(budgetId, categoryId, month, year, data, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {string} categoryId 
-     * @param {string} month 
-     * @param {string} year 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsMonthsCategoryRead(budgetId: string, categoryId: string, month: string, year: string, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsMonthsCategoryRead(budgetId, categoryId, month, year, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsMonthsList(budgetId: string, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsMonthsList(budgetId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {string} month 
-     * @param {string} year 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsMonthsRead(budgetId: string, month: string, year: string, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsMonthsRead(budgetId, month, year, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} id 
-     * @param {Budget} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsPartialUpdate(id: string, data: Budget, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsPartialUpdate(id, data, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {Payee} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsPayeeCreate(budgetId: string, data: Payee, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsPayeeCreate(budgetId, data, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsPayeeList(budgetId: string, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsPayeeList(budgetId, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {string} id 
-     * @param {Payee} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsPayeePartialUpdate(budgetId: string, id: string, data: Payee, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsPayeePartialUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsPayeeRead(budgetId: string, id: string, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsPayeeRead(budgetId, id, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} budgetId 
-     * @param {string} id 
-     * @param {Payee} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsPayeeUpdate(budgetId: string, id: string, data: Payee, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsPayeeUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} id 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsRead(id: string, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsRead(id, options)(this.fetch, this.basePath);
+    public budgetsCategoryTransactionList(budgetId: string, categoryId: string, options?: any) {
+        return TransactionsApiFp(this.configuration).budgetsCategoryTransactionList(budgetId, categoryId, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -3614,10 +3852,10 @@ export class V1Api extends BaseAPI {
      * @param {Transaction} data 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
+     * @memberof TransactionsApi
      */
-    public v1BudgetsTransactionCreate(budgetId: string, data: Transaction, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsTransactionCreate(budgetId, data, options)(this.fetch, this.basePath);
+    public budgetsTransactionCreate(budgetId: string, data: Transaction, options?: any) {
+        return TransactionsApiFp(this.configuration).budgetsTransactionCreate(budgetId, data, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -3625,10 +3863,10 @@ export class V1Api extends BaseAPI {
      * @param {string} budgetId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
+     * @memberof TransactionsApi
      */
-    public v1BudgetsTransactionList(budgetId: string, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsTransactionList(budgetId, options)(this.fetch, this.basePath);
+    public budgetsTransactionList(budgetId: string, options?: any) {
+        return TransactionsApiFp(this.configuration).budgetsTransactionList(budgetId, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -3638,10 +3876,10 @@ export class V1Api extends BaseAPI {
      * @param {Transaction} data 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
+     * @memberof TransactionsApi
      */
-    public v1BudgetsTransactionPartialUpdate(budgetId: string, id: string, data: Transaction, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsTransactionPartialUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
+    public budgetsTransactionPartialUpdate(budgetId: string, id: string, data: Transaction, options?: any) {
+        return TransactionsApiFp(this.configuration).budgetsTransactionPartialUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -3650,10 +3888,10 @@ export class V1Api extends BaseAPI {
      * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
+     * @memberof TransactionsApi
      */
-    public v1BudgetsTransactionRead(budgetId: string, id: string, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsTransactionRead(budgetId, id, options)(this.fetch, this.basePath);
+    public budgetsTransactionRead(budgetId: string, id: string, options?: any) {
+        return TransactionsApiFp(this.configuration).budgetsTransactionRead(budgetId, id, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -3663,32 +3901,10 @@ export class V1Api extends BaseAPI {
      * @param {Transaction} data 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof V1Api
+     * @memberof TransactionsApi
      */
-    public v1BudgetsTransactionUpdate(budgetId: string, id: string, data: Transaction, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsTransactionUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {string} id 
-     * @param {Budget} data 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1BudgetsUpdate(id: string, data: Budget, options?: any) {
-        return V1ApiFp(this.configuration).v1BudgetsUpdate(id, data, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof V1Api
-     */
-    public v1List(options?: any) {
-        return V1ApiFp(this.configuration).v1List(options)(this.fetch, this.basePath);
+    public budgetsTransactionUpdate(budgetId: string, id: string, data: Transaction, options?: any) {
+        return TransactionsApiFp(this.configuration).budgetsTransactionUpdate(budgetId, id, data, options)(this.fetch, this.basePath);
     }
 
 }
