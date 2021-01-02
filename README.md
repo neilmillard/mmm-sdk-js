@@ -7,7 +7,7 @@ This repo lets you perform
 
 # Generate / update ./src folder based on API
 This is currently expected to be running on localhost:8000
-`npm generate`
+`npm run generate`
 
 # Build and package to /dist
-`npm build`
+`npm run build`

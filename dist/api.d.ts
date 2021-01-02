@@ -261,6 +261,12 @@ export interface Envelope {
      * @type {string}
      * @memberof Envelope
      */
+    id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Envelope
+     */
     month?: string;
     /**
      *
@@ -268,6 +274,18 @@ export interface Envelope {
      * @memberof Envelope
      */
     category?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Envelope
+     */
+    categoryId?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Envelope
+     */
+    categoryGroupId?: string;
     /**
      *
      * @type {number}
