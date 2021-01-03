@@ -172,12 +172,6 @@ export interface Budget {
     lastModified?: Date;
     /**
      * 
-     * @type {Array<Month>}
-     * @memberof Budget
-     */
-    months?: Array<Month>;
-    /**
-     * 
      * @type {Array<CategoryGroup>}
      * @memberof Budget
      */
