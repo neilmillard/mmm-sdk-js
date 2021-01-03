@@ -153,6 +153,18 @@ export interface Budget {
     lastModified?: Date;
     /**
      *
+     * @type {string}
+     * @memberof Budget
+     */
+    firstMonth?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Budget
+     */
+    lastMonth?: string;
+    /**
+     *
      * @type {Array<CategoryGroup>}
      * @memberof Budget
      */
